@@ -1,4 +1,4 @@
-import { NavItem } from '@components/pageStructure/Header/headerNavigation.config';
+import { NavItem } from '../../../pageStructure/Header/headerNavigation.config';
 import { NavLink } from '../NavLink/NavLink';
 import {
   dropdownButton,
