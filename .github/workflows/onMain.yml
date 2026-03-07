@@ -1,0 +1,15 @@
+name: On push main
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: fregante/setup-git-user@v2
+      - run: git commit -m "PR merged" --no-edit --allow-empty
+      - run: git push
