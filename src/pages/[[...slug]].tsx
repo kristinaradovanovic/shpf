@@ -1,4 +1,3 @@
-import Header from '@components/pageStructure/Header/Header';
 import Seo from '@components/Seo/Seo';
 import IndexPage from '@components/subPages/IndexPage/IndexPage';
 import IndexPagePreview from '@components/subPages/IndexPage/IndexPagePreview';
@@ -6,7 +5,7 @@ import { readToken } from '@lib/sanity/sanity.api';
 import { getAllPagesSlugs, getClient, getNode } from '@lib/sanity/sanity.client';
 import type { NodeTypeUnion, NodeTypeWithLocale } from '@lib/types/types';
 import type { SharedPageProps } from '@pages/_app';
-import { FooterSchemaType } from '@schemas/footer/footer.types';
+import { FooterSchemaType } from '@/schemas/footer/footer.types';
 import { HeaderSchemaType } from '@schemas/header/header.types';
 import { Settings } from '@schemas/settings/settings.types';
 import type { GetStaticProps } from 'next';
@@ -60,7 +59,8 @@ export default function Page({
         node={node}
         settings={settings}
       />
-      <Header />
+      {/* <Header /> */}
+      <p>Home page</p>
       <IndexPage node={node} />
       {/*     <Footer
         footer={footer}

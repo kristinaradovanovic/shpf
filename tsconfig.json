@@ -24,6 +24,7 @@
     ],
     "strictNullChecks": true,
     "paths": {
+      "@/*": ["./src/*"],
       "@components*": ["./src/components*"],
       "@lib*": ["./src/lib*"],
       "@public*": ["./src/public*"],
@@ -38,7 +39,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.redirects.mjs",
-    "redirects.js",
+    "redirects.js"
   ],
   "exclude": ["node_modules"]
 }
