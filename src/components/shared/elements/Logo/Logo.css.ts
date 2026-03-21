@@ -1,4 +1,5 @@
 import { colors } from '@lib/styles/variables/colors';
+import { fontSizes } from '@lib/styles/variables/fonts';
 import { spacings } from '@lib/styles/variables/spacings';
 import { style } from '@vanilla-extract/css';
 
@@ -21,7 +22,7 @@ export const logoIcon = style({
 });
 
 export const logoText = style({
-  fontSize: '1.4rem',
+  fontSize: fontSizes[22],
   fontWeight: 700,
   letterSpacing: '-0.02em',
   color: colors.navy900,

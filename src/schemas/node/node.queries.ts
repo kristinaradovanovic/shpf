@@ -2,10 +2,11 @@ import { ctaLinkFields, fileAssetFields } from '@lib/queries/queries';
 import { footerSchemaFields } from '@schemas/footer/footer.queries';
 import { headerSchemaFields } from '@schemas/header/header.queries';
 import { groq } from 'next-sanity';
+import { HomeHeroBlockQuery } from '../blocks/HomeHeroBlock/HomeHeroBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
-const blockQueries: any = [];
+const blockQueries: any = [HomeHeroBlockQuery];
 
 const blockFields = groq`
     defined(isIndex) => {

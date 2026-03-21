@@ -9,6 +9,7 @@ import {
   TranslationMetadataType,
 } from '@lib/types/types';
 import { getTranslationsByID, getTranslationsRefByID } from '@schemas/node/node.queries';
+import HomeHeroBlockSchema from '../blocks/HomeHeroBlock/HomeHeroBlock.schema';
 
 export const schemaName = 'page';
 export const schemaTitle = 'Page';
@@ -112,7 +113,7 @@ export default defineType({
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
-      of: [],
+      of: [{ type: HomeHeroBlockSchema.name }],
       description: 'The modular blocks that make up this page.',
       hidden: ({ parent }) => !parent?.isIndex,
       options: {
