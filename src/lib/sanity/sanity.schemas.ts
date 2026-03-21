@@ -30,6 +30,7 @@ import richTextContentSchema from '@schemas/richTextItems/richTextContent.schema
 import richTextCtaButtonSchema from '@schemas/richTextCtaButton/richTextCtaButton.schema';
 import titleWithKeywordsItemSchema from '@schemas/titleWithKeywordsItem/titleWithKeywordsItem.schema';
 import HomeHeroBlockSchema from '@/schemas/blocks/HomeHeroBlock/HomeHeroBlock.schema';
+import SplitContentWithCtaBlockSchema from '@/schemas/blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -68,4 +69,5 @@ export const schemas = [
 
   // ------------BLOCKS------------------
   HomeHeroBlockSchema,
+  SplitContentWithCtaBlockSchema,
 ];

@@ -3,10 +3,11 @@ import { footerSchemaFields } from '@schemas/footer/footer.queries';
 import { headerSchemaFields } from '@schemas/header/header.queries';
 import { groq } from 'next-sanity';
 import { HomeHeroBlockQuery } from '../blocks/HomeHeroBlock/HomeHeroBlock.queries';
+import { SplitContentWithCtaBlockQuery } from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
-const blockQueries: any = [HomeHeroBlockQuery];
+const blockQueries: any = [HomeHeroBlockQuery, SplitContentWithCtaBlockQuery];
 
 const blockFields = groq`
     defined(isIndex) => {
