@@ -46,7 +46,6 @@ export default function Page({ draftMode, params, node, header, footer, locale }
     <>
       <Seo node={node} />
       {/* <Header /> */}
-      <p>Home page</p>
       <IndexPage node={node} />
       {/*     <Footer
         footer={footer}

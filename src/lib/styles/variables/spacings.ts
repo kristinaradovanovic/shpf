@@ -32,6 +32,8 @@ export const spacings = {
   160: pxToRem(160),
   180: pxToRem(180),
   200: pxToRem(200),
+  650: pxToRem(650),
+  700: pxToRem(700),
 };
 
 export const borderRadius = {

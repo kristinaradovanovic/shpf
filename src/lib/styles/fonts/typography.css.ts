@@ -6,13 +6,13 @@ export const h1 = style([
   {
     fontFamily: 'var(--accent-font)',
     fontWeight: 600,
-    fontSize: fontSizes[48],
+    fontSize: '60px',
     lineHeight: '1.05',
     letterSpacing: '-0.04em',
   },
   responsiveStyles({
     desktop: {
-      fontSize: fontSizes[72],
+      fontSize: '80px',
     },
   }),
 ]);
@@ -60,6 +60,21 @@ export const bodyCopy = style([
     lineHeight: '1.5',
     letterSpacing: '-0.01em',
   },
+]);
+
+export const headingDescription = style([
+  {
+    fontFamily: 'var(--accent-font)',
+    fontWeight: 400,
+    fontSize: fontSizes[24],
+    lineHeight: '1.3',
+    letterSpacing: '-0.02em',
+  },
+  responsiveStyles({
+    desktop: {
+      fontSize: fontSizes[28],
+    },
+  }),
 ]);
 
 export const labelText = style({

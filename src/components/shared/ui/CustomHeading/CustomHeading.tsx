@@ -1,9 +1,10 @@
-import { highlightText } from './CustomHeading.css';
+import { highlightText, textColorVariants } from './CustomHeading.css';
 import { CustomHeadingProps } from './CustomHeading.types';
 
 export const CustomHeading: React.FC<CustomHeadingProps> = ({
   text,
   as = 'h2',
+  textColor = 'white',
   className,
   ...otherProps
 }) => {
@@ -22,7 +23,12 @@ export const CustomHeading: React.FC<CustomHeadingProps> = ({
           {part}
         </span>
       ) : (
-        part
+        <span
+          key={`${part}-${index}`}
+          className={textColorVariants[textColor]}
+        >
+          {part}
+        </span>
       ),
     );
   }
@@ -31,6 +37,7 @@ export const CustomHeading: React.FC<CustomHeadingProps> = ({
     <Element
       className={className}
       {...otherProps}
+      style={{ color: 'inherit', ...otherProps.style }}
     >
       {formatHighlightedText(text)}
     </Element>

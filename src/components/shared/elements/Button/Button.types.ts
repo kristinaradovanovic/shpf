@@ -7,7 +7,8 @@ export type ButtonProps = PropsWithChildren & {
   href?: string;
   isDisabled?: boolean;
   buttonType?: 'button' | 'submit' | 'reset';
-  variant?: 'orange' | 'orangeWithIcon' | 'green' | 'whiteOutlined';
+  variant?: 'golden' | 'whiteOutlined' | 'navyOutlined' | 'navy';
+  iconRight?: boolean;
   className?: string;
   ctaButton?: CTAButtonItemSchemaType;
   style?: React.CSSProperties;

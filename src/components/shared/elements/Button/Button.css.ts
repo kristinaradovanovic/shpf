@@ -11,58 +11,74 @@ export const buttonStyle = recipe({
     textAlign: 'center',
     gap: spacings[8],
     paddingInline: spacings[24],
-    blockSize: '40px',
-    borderRadius: '10px',
+    blockSize: '50px',
+    borderRadius: 0,
     backgroundColor: colors.gold400,
     cursor: 'pointer',
-    fontWeight: 600,
+    fontWeight: 500,
     transition: 'background-color 200ms ease, border-color 200ms ease',
     whiteSpace: 'nowrap',
     minWidth: '180px',
+    border: '2px solid transparent',
   },
   variants: {
     variant: {
-      orange: {
+      golden: {
         backgroundColor: colors.gold400,
-        color: colors.white,
-        border: 0,
+        color: colors.navy700,
         selectors: {
           '&:hover': {
-            backgroundColor: colors.sand100,
-            color: colors.gold400,
-            borderColor: colors.gold400,
+            backgroundColor: colors.gold500,
+            color: colors.navy700,
           },
-        },
-      },
-      orangeWithIcon: {
-        backgroundColor: colors.gold400,
-        color: colors.white,
-        border: 0,
-        selectors: {
-          '&:hover': {
-            backgroundColor: colors.sand100,
-            color: colors.gold400,
-            borderColor: colors.gold400,
-          },
-        },
-      },
-      green: {
-        backgroundColor: colors.blue700,
-        color: colors.white,
-        border: 0,
-        selectors: {
-          '&:hover': {
-            backgroundColor: colors.blue600,
+          '&:active': {
+            backgroundColor: colors.gold500,
           },
         },
       },
       whiteOutlined: {
-        backgroundColor: colors.white,
-        color: colors.slate500,
-        borderColor: colors.blue700,
+        backgroundColor: 'transparent',
+        color: colors.white,
+        borderColor: colors.white,
         selectors: {
           '&:hover': {
-            backgroundColor: colors.sand50,
+            backgroundColor: colors.white,
+            color: colors.navy700,
+            borderColor: colors.white,
+          },
+          '&:active': {
+            backgroundColor: colors.white,
+            color: colors.navy700,
+            borderColor: colors.white,
+          },
+        },
+      },
+      navyOutlined: {
+        backgroundColor: 'transparent',
+        color: colors.navy700,
+        borderColor: colors.navy700,
+        selectors: {
+          '&:hover': {
+            backgroundColor: colors.navy700,
+            color: colors.white,
+            borderColor: colors.navy700,
+          },
+          '&:active': {
+            backgroundColor: colors.navy900,
+            color: colors.white,
+            borderColor: colors.navy900,
+          },
+        },
+      },
+      navy: {
+        backgroundColor: colors.navy700,
+        color: colors.white,
+        selectors: {
+          '&:hover': {
+            backgroundColor: colors.navy900,
+          },
+          '&:active': {
+            backgroundColor: colors.navy900,
           },
         },
       },

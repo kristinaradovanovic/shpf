@@ -15,7 +15,8 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     text = ctaButton?.ctaTitle,
     onClick,
     buttonType = 'button',
-    variant = 'orange',
+    variant = 'golden',
+    iconRight = false,
     className,
     isDisabled = false,
     ...otherProps
@@ -40,7 +41,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     >
       {text}
 
-      {variant === 'orangeWithIcon' && <ArrowRightIcon className={buttonIcon} />}
+      {iconRight && variant !== 'golden' && <ArrowRightIcon className={buttonIcon} />}
     </button>
   );
 
