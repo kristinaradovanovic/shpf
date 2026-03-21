@@ -1,5 +1,5 @@
-import { CTAButtonItemSchemaType } from '@/schemas/ctaButtonItem/ctaButtonItem.types';
-import { PartnerItemSchemaType } from '@/schemas/partnerItem/partnerItem.types';
+/* import { CTAButtonItemSchemaType } from '@/schemas/ctaButtonItem/ctaButtonItem.types';
+ */ import { PartnerItemSchemaType } from '@/schemas/partnerItem/partnerItem.types';
 import type { SchemaType } from '@lib/types/types';
 
 export interface PartnersCtaBlockSchemaType extends SchemaType {
@@ -7,5 +7,5 @@ export interface PartnersCtaBlockSchemaType extends SchemaType {
   title: string;
   description: string;
   partners: PartnerItemSchemaType[];
-  ctaButton?: CTAButtonItemSchemaType;
+  /* ctaButton?: CTAButtonItemSchemaType; */
 }
