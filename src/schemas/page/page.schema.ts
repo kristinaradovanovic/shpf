@@ -12,6 +12,7 @@ import { getTranslationsByID, getTranslationsRefByID } from '@schemas/node/node.
 import HomeHeroBlockSchema from '../blocks/HomeHeroBlock/HomeHeroBlock.schema';
 import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
 import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
+import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
 
 export const schemaName = 'page';
 export const schemaTitle = 'Page';
@@ -119,6 +120,7 @@ export default defineType({
         { type: HomeHeroBlockSchema.name },
         { type: SplitContentWithCtaBlockSchema.name },
         { type: MembersCtaBlockSchema.name },
+        { type: PartnersCtaBlockSchema.name },
       ],
       description: 'The modular blocks that make up this page.',
       hidden: ({ parent }) => !parent?.isIndex,

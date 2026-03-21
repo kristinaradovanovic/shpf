@@ -7,11 +7,13 @@ import { style } from '@vanilla-extract/css';
 
 export const sectionStyle = style([
   {
-    paddingBlock: 0,
+    paddingBlockStart: 0,
+    paddingBlockEnd: spacings[80],
   },
   responsiveStyles({
     tablet: {
-      paddingBlock: spacings[40],
+      paddingBlockStart: spacings[40],
+      paddingBlockEnd: spacings[80],
     },
   }),
 ]);
