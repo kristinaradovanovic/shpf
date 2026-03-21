@@ -1,33 +1,27 @@
 import { labelText } from '@lib/styles/fonts/typography.css';
 import { colors } from '@lib/styles/variables/colors';
 import { spacings } from '@lib/styles/variables/spacings';
-import { keyframes, style } from '@vanilla-extract/css';
-
-export const blink = keyframes({
-  '0%': { opacity: 1 },
-  '50%': { opacity: 0 },
-  '100%': { opacity: 1 },
-});
-
-export const blinkingIconStyle = style([
-  {
-    animation: `${blink} 1.5s ease-in-out infinite`,
-    height: spacings[20],
-    width: spacings[20],
-  },
-]);
+import { style } from '@vanilla-extract/css';
 
 export const sectionTaglineContainer = style([
   {
     display: 'flex',
     alignItems: 'center',
-    columnGap: spacings[10],
+    justifyContent: 'center',
   },
 ]);
 
 export const sectionTaglineText = style([
   labelText,
   {
-    color: colors.navy900,
+    color: colors.gold500,
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+    borderRadius: '100px',
+    border: `1px solid ${colors.gold500}`,
+    paddingInline: spacings[12],
+    paddingBlock: spacings[6],
+    margin: 0,
   },
 ]);
