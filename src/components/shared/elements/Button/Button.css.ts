@@ -13,66 +13,60 @@ export const buttonStyle = recipe({
     paddingInline: spacings[24],
     blockSize: '40px',
     borderRadius: '10px',
-    border: '2px solid transparent',
+    backgroundColor: colors.gold400,
     cursor: 'pointer',
     fontWeight: 600,
     transition: 'background-color 200ms ease, border-color 200ms ease',
     whiteSpace: 'nowrap',
     minWidth: '180px',
   },
-
   variants: {
     variant: {
       orange: {
-        backgroundColor: colors.orangeAccent,
+        backgroundColor: colors.gold400,
         color: colors.white,
-
+        border: 0,
         selectors: {
           '&:hover': {
-            backgroundColor: colors.coral200,
-            color: colors.orangeAccent,
-            borderColor: colors.orangeAccent,
+            backgroundColor: colors.sand100,
+            color: colors.gold400,
+            borderColor: colors.gold400,
           },
         },
       },
-
       orangeWithIcon: {
-        backgroundColor: colors.orangeAccent,
+        backgroundColor: colors.gold400,
         color: colors.white,
-
+        border: 0,
         selectors: {
           '&:hover': {
-            backgroundColor: colors.coral200,
-            color: colors.orangeAccent,
-            borderColor: colors.orangeAccent,
+            backgroundColor: colors.sand100,
+            color: colors.gold400,
+            borderColor: colors.gold400,
           },
         },
       },
-
       green: {
-        backgroundColor: colors.green500,
-        color: colors.text500,
-
+        backgroundColor: colors.blue700,
+        color: colors.white,
+        border: 0,
         selectors: {
           '&:hover': {
-            backgroundColor: colors.green400,
+            backgroundColor: colors.blue600,
           },
         },
       },
-
       whiteOutlined: {
         backgroundColor: colors.white,
-        color: colors.text500,
-        borderColor: colors.green500,
-
+        color: colors.slate500,
+        borderColor: colors.blue700,
         selectors: {
           '&:hover': {
-            backgroundColor: colors.green50,
+            backgroundColor: colors.sand50,
           },
         },
       },
     },
-
     isDisabled: {
       true: {
         opacity: 0.5,

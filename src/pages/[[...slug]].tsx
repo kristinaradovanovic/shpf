@@ -2,18 +2,16 @@ import Seo from '@components/Seo/Seo';
 import IndexPage from '@components/subPages/IndexPage/IndexPage';
 import IndexPagePreview from '@components/subPages/IndexPage/IndexPagePreview';
 import { readToken } from '@lib/sanity/sanity.api';
-import { getAllPagesSlugs, getClient, getNode } from '@lib/sanity/sanity.client';
+import { getAllPagesSlugs, getClient, getNode, getSettings } from '@lib/sanity/sanity.client';
 import type { NodeTypeUnion, NodeTypeWithLocale } from '@lib/types/types';
 import type { SharedPageProps } from '@pages/_app';
 import { FooterSchemaType } from '@/schemas/footer/footer.types';
 import { HeaderSchemaType } from '@schemas/header/header.types';
-import { Settings } from '@schemas/settings/settings.types';
 import type { GetStaticProps } from 'next';
 interface PageProps extends SharedPageProps {
   header: HeaderSchemaType;
   footer: FooterSchemaType;
   node: NodeTypeUnion;
-  settings: Settings;
   params: any;
   locale?: string;
   locales?: string[];
@@ -24,15 +22,7 @@ interface Query {
   [key: string]: string;
 }
 
-export default function Page({
-  draftMode,
-  params,
-  node,
-  header,
-  footer,
-  settings,
-  locale,
-}: PageProps) {
+export default function Page({ draftMode, params, node, header, footer, locale }: PageProps) {
   if (draftMode) {
     // Handles all the different page types inside the preview component
     return (
@@ -40,7 +30,6 @@ export default function Page({
         node={node}
         header={header}
         footer={footer}
-        settings={settings}
         params={params}
         locale={locale}
       />
@@ -55,10 +44,7 @@ export default function Page({
 
   return (
     <>
-      <Seo
-        node={node}
-        settings={settings}
-      />
+      <Seo node={node} />
       {/* <Header /> */}
       <p>Home page</p>
       <IndexPage node={node} />
@@ -84,9 +70,8 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     };
   }
 
-  const [node]: [NodeTypeWithLocale | string] = await Promise.all([
-    getNode(client, slug ?? [], locale ?? ''),
-  ]);
+  const [node, settings]: [NodeTypeWithLocale | string, Awaited<ReturnType<typeof getSettings>>] =
+    await Promise.all([getNode(client, slug ?? [], locale ?? ''), getSettings(client)]);
 
   if (typeof node === 'string') {
     return {
@@ -112,7 +97,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       header: node.value.header,
       footer: node.value.footer,
       node: node.value,
-      settings: node.value.settings,
+      settings: settings ?? null,
       draftMode,
       params: params,
       locale,

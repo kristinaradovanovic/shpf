@@ -48,8 +48,8 @@ export function getClient(
 
 export const getSanityImageConfig = () => getClient();
 
-export async function getSettings(client: SanityClient): Promise<Settings> {
-  return (await client.fetch(settingsFields)) || {};
+export async function getSettings(client: SanityClient): Promise<Settings | null> {
+  return (await client.fetch(settingsFields)) || null;
 }
 
 export async function getAllPagesSlugs(

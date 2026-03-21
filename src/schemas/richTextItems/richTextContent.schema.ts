@@ -129,8 +129,49 @@ export default defineType({
         defineField({
           name: 'videoReference',
           title: 'Video',
-          type: 'reference',
-          to: [{ type: 'videoObject' }],
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+            }),
+            defineField({
+              name: 'videoType',
+              title: 'Video Type',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Uploaded', value: 'video' },
+                  { title: 'Embedded', value: 'embeddedVideoUrl' },
+                ],
+                layout: 'radio',
+              },
+              initialValue: 'video',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'video',
+              title: 'Video File',
+              type: 'file',
+              options: {
+                accept: 'video/*',
+              },
+              hidden: ({ parent }) => parent?.videoType !== 'video',
+            }),
+            defineField({
+              name: 'embeddedVideoUrl',
+              title: 'Embedded Video URL',
+              type: 'url',
+              hidden: ({ parent }) => parent?.videoType !== 'embeddedVideoUrl',
+            }),
+          ],
         }),
         defineField({
           name: 'showDescription',

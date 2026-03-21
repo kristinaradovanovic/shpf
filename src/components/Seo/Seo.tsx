@@ -4,8 +4,7 @@ import type { SeoProps } from './Seo.types';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-export default function Seo({ settings, node }: SeoProps) {
-  // const ogImageTitle = settings?.ogImage?.title || '';
+export default function Seo({ node }: SeoProps) {
   const router = useRouter();
   const [canonicalUrl, setCanonicalUrl] = useState<string | null>(null);
   useEffect(() => {
@@ -75,16 +74,6 @@ export default function Seo({ settings, node }: SeoProps) {
         name="google-site-verification"
         content={''}
       />
-      {/* Typekit FONT */}
-      <link
-        rel="preload"
-        href="https://use.typekit.net/heo5hpl.css"
-        as="style"
-      />
-      <link
-        rel="stylesheet"
-        href="https://use.typekit.net/heo5hpl.css"
-      />
       {/* Canonical */}
       <link
         rel="canonical"
@@ -125,7 +114,7 @@ export default function Seo({ settings, node }: SeoProps) {
       <meta
         key="og:title"
         property="og:title"
-        content={node?.node?.metaTitle || settings?.title}
+        content={node?.node?.metaTitle}
       />
       <meta
         key="og:description"
@@ -149,12 +138,12 @@ export default function Seo({ settings, node }: SeoProps) {
       />
       <meta
         property="og:image"
-        content={node?.node?.ogImage?.url || settings?.defaultOgImage?.url}
+        content={node?.node?.ogImage?.url}
       />
       <meta
         key="og:image:alt"
         property="og:image:alt"
-        content={node?.node?.ogImageAlt || settings?.defaultOgImageAlt}
+        content={node?.node?.ogImageAlt}
       />
       {/* Twitter meta */}
       <meta
@@ -175,7 +164,7 @@ export default function Seo({ settings, node }: SeoProps) {
       <meta
         key="twitter:title"
         name="twitter:title"
-        content={node?.node?.metaTitle || settings?.title}
+        content={node?.node?.metaTitle}
       />
       <meta
         key="twitter:description"
@@ -185,12 +174,12 @@ export default function Seo({ settings, node }: SeoProps) {
       <meta
         key="twitter:image"
         name="twitter:image"
-        content={node?.node?.ogImage?.url || settings?.defaultOgImage?.url}
+        content={node?.node?.ogImage?.url}
       />
       <meta
         key="twitter:image:alt"
         name="twitter:image:alt"
-        content={node?.node?.ogImageAlt || settings?.defaultOgImageAlt}
+        content={node?.node?.ogImageAlt}
       />
       {/* Safari BUG: is needed to handle "tel:" links in rich text in <a> tags */}
       <meta

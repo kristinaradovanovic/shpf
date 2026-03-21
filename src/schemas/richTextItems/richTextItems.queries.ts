@@ -12,7 +12,7 @@ export const richTextItemsSchemaFields = groq`
   },
   _type == "video" => {
     ...,
-    "videoReference": videoReference-> {
+    "videoReference": videoReference {
     ...,
     videoType == "video" => {
       "video": video.asset-> {

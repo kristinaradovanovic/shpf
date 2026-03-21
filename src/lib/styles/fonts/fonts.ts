@@ -1,20 +1,20 @@
 import clsx from 'clsx';
-import { Inter, Manrope /* Poppins  */ } from 'next/font/google';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 
 export type fontCSSVariables = '--base-font' | '--accent-font';
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['400', '500', '600', '700', '900'],
   variable: '--base-font',
   display: 'swap',
 });
 
-const manrope = Manrope({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   variable: '--accent-font',
   display: 'swap',
 });
 
-export const fontStyles = clsx(inter.variable, manrope.variable);
+export const fontStyles = clsx(inter.variable, cormorantGaramond.variable);

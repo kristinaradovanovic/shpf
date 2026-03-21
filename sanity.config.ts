@@ -3,17 +3,9 @@
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
-import {
-  apiVersion,
-  dataset,
-  // DRAFT_MODE_ROUTE,
-  projectId,
-  // readToken,
-  // writeToken,
-} from '@lib/sanity/sanity.api';
+import { apiVersion, dataset, projectId } from '@lib/sanity/sanity.api';
 import { schemas } from '@lib/sanity/sanity.schemas';
 import { pageStructureChildPages, settingsPlugin, settingsStructure } from '@plugins/settings';
-// import { hierarchicalDocumentList } from '@sanity/hierarchical-document-list';
 import { debugSecrets } from '@sanity/preview-url-secret/sanity-plugin-debug-secrets';
 import { visionTool } from '@sanity/vision';
 import settingsSchema from '@schemas/settings/settings.schema';
@@ -24,8 +16,6 @@ import { previewDocumentNode } from '@plugins/previewPane/previewPane';
 import { documentInternationalization } from '@sanity/document-internationalization';
 import { createImprovedAction } from '@lib/actions/ComputeFullUrlAction';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash';
-// import { locate } from '@plugins/locate';
-// import { presentationTool } from 'sanity/presentation';
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Sanity Studio';
 const subtitle = 'Content Studio';
@@ -59,9 +49,13 @@ export default defineConfig({
                 name: 'parentId',
                 type: 'string',
               },
+              {
+                name: 'language',
+                type: 'string',
+              },
             ],
             value: (parameters: any) => ({
-              language: 'sv',
+              language: parameters.language || 'sv',
               node: {
                 slugParent: {
                   _type: 'reference',
@@ -100,7 +94,7 @@ export default defineConfig({
       // Required configuration
       supportedLanguages: [
         { id: 'sv', title: 'Swedish' },
-        // { id: 'en', title: 'English' },
+        { id: 'en', title: 'English' },
       ],
       schemaTypes: LOCALIZED_SCHEMAS,
     }),

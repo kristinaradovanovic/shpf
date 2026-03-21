@@ -5,4 +5,4 @@ Disallow: /studio/
 Allow: /
 
 # Sitemap location
-Sitemap: https://kruso.se/sitemap.xml
+Sitemap: 

@@ -16,7 +16,7 @@ export const logoWrapper = style({
 export const logoIcon = style({
   width: 28,
   height: 28,
-  color: colors.orangeAccent,
+  color: colors.gold400,
   flexShrink: 0,
 });
 
@@ -24,9 +24,9 @@ export const logoText = style({
   fontSize: '1.4rem',
   fontWeight: 700,
   letterSpacing: '-0.02em',
-  color: colors.text900,
+  color: colors.navy900,
 });
 
 export const logoTextStrong = style({
-  color: colors.orangeAccent,
+  color: colors.gold400,
 });

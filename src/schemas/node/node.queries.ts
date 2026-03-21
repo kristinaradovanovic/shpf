@@ -1,8 +1,6 @@
 import { ctaLinkFields, fileAssetFields } from '@lib/queries/queries';
-import { caseSchemaBaseFields } from '@schemas/case/case.queries';
 import { footerSchemaFields } from '@schemas/footer/footer.queries';
 import { headerSchemaFields } from '@schemas/header/header.queries';
-import { settingsFields } from '@schemas/settings/settings.queries';
 import { groq } from 'next-sanity';
 // do not use barrel file, queries become undefined
 
@@ -128,10 +126,6 @@ export const getParentWithNodeBySlug = groq`*[defined(node) && node.slug.current
     },
     "footer": *[_type == 'footer' && language == $language][0] {
         ${footerSchemaFields}
-    },
-    "settings": ${settingsFields},
-    _type == "case" => {
-        ${caseSchemaBaseFields}
     }
 }`;
 
@@ -155,10 +149,6 @@ export const getParentWithNodeById = groq`*[defined(node) && _id == $id && langu
     },
     "footer": *[_type == 'footer' && language == $language][0] {
         ${footerSchemaFields}
-    },
-    "settings": ${settingsFields},
-    _type == "case" => {
-        ${caseSchemaBaseFields}
     }
 }`;
 export const getParentWithNodeByIdSimple = groq`*[defined(node) && _id == $id][0] {
@@ -183,10 +173,6 @@ export const getParentWithRootNode = groq`*[defined(node) && isRoot == true && l
     },
     "footer": *[_type == 'footer' && language == $language][0] {
         ${footerSchemaFields}
-    },
-    "settings": ${settingsFields},
-    _type == "case" => {
-        ${caseSchemaBaseFields}
     }
 }`;
 
