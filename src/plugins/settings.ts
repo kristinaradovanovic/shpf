@@ -298,7 +298,7 @@ export const settingsStructure = (typeDef: DocumentDefinition): StructureResolve
                           S.listItem()
                             .title('Partners')
                             .icon(FolderIcon as any)
-                            .child(S.list().title('Partners').items([])),
+                            .child(S.documentTypeList('partnerItem').title('Partners')),
                         ]),
                     ),
                 ),

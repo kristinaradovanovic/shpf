@@ -34,6 +34,7 @@ import SplitContentWithCtaBlockSchema from '@/schemas/blocks/SplitContentWithCta
 import contentItemSchema from '@/schemas/contentItem/contentItem.schema';
 import teamMemberSchema from '@/schemas/teamMember/teamMember.schema';
 import MembersCtaBlockSchema from '@/schemas/blocks/MembersCtaBlock/MembersCtaBlock.schema';
+import partnerItemSchema from '@/schemas/partnerItem/partnerItem.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -71,6 +72,7 @@ export const schemas = [
   richTextCtaButtonSchema,
   titleWithKeywordsItemSchema,
   teamMemberSchema,
+  partnerItemSchema,
 
   // ------------BLOCKS------------------
   HomeHeroBlockSchema,
