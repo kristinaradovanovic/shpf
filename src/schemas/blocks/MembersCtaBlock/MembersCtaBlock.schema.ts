@@ -34,7 +34,7 @@ export default defineType({
       title: 'Members',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'teamMember' }] }],
-      validation: (rule) => rule.required().min(1).max(4),
+      validation: (rule) => rule.required().min(3).max(3),
     }),
     defineField({
       name: 'ctaButton',
