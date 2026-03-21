@@ -4,12 +4,9 @@ import { style } from '@vanilla-extract/css';
 
 export const sectionStyle = style([
   {
-    paddingBlock: spacings[40],
+    paddingBlock: spacings[60],
   },
   responsiveStyles({
-    tablet: {
-      paddingBlock: spacings[60],
-    },
     desktop: {
       paddingBlock: spacings[80],
     },
@@ -19,11 +16,6 @@ export const sectionStyle = style([
 export const gridItemStyle = style([
   {
     gridColumn: 'span 12',
-    paddingBlockEnd: spacings[40],
+    paddingBlockEnd: spacings[60],
   },
-  responsiveStyles({
-    desktop: {
-      paddingBlockEnd: spacings[60],
-    },
-  }),
 ]);

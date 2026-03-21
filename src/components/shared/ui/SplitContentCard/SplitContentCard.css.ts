@@ -11,9 +11,14 @@ export const splitContentCardGrid = style([
     alignItems: 'stretch',
     overflow: 'hidden',
   },
+  responsiveStyles({
+    tablet: {
+      gridTemplateRows: 'auto auto',
+    },
+  }),
 ]);
 
-export const contentGridItem = style([
+export const headingGridItem = style([
   {
     gridColumn: 'span 12',
     display: 'flex',
@@ -21,18 +26,46 @@ export const contentGridItem = style([
     justifyContent: 'center',
   },
   responsiveStyles({
-    desktop: {
+    tablet: {
       gridColumn: 'span 6',
-      order: 1,
+      gridRow: '1',
       paddingInlineEnd: spacings[30],
     },
   }),
 ]);
 
-export const contentGridItemReversed = style([
+export const headingGridItemReversed = style([
   responsiveStyles({
-    desktop: {
-      order: 2,
+    tablet: {
+      gridColumn: '7 / span 6',
+      paddingInlineStart: spacings[30],
+      paddingInlineEnd: 0,
+    },
+  }),
+]);
+
+export const bodyGridItem = style([
+  {
+    gridColumn: 'span 12',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: spacings[16],
+  },
+  responsiveStyles({
+    tablet: {
+      gridColumn: 'span 6',
+      gridRow: '2',
+      paddingInlineEnd: spacings[30],
+      paddingTop: 0,
+    },
+  }),
+]);
+
+export const bodyGridItemReversed = style([
+  responsiveStyles({
+    tablet: {
+      gridColumn: '7 / span 6',
       paddingInlineStart: spacings[30],
       paddingInlineEnd: 0,
     },
@@ -63,12 +96,21 @@ export const descriptionText = style([
     color: colors.navy700,
     margin: 0,
     paddingBlockEnd: spacings[20],
+    whiteSpace: 'pre-wrap',
   },
 ]);
 
-export const ctaWrap = style({
-  marginTop: spacings[8],
-});
+export const ctaWrap = style([
+  {
+    marginTop: spacings[8],
+    alignSelf: 'flex-end',
+  },
+  responsiveStyles({
+    tablet: {
+      alignSelf: 'flex-start',
+    },
+  }),
+]);
 
 export const imageGridItem = style([
   {
@@ -77,18 +119,18 @@ export const imageGridItem = style([
     minHeight: '300px',
   },
   responsiveStyles({
-    desktop: {
+    tablet: {
       gridColumn: 'span 6',
+      gridRow: '1 / span 2',
       minHeight: '100%',
-      order: 2,
     },
   }),
 ]);
 
 export const imageGridItemReversed = style([
   responsiveStyles({
-    desktop: {
-      order: 1,
+    tablet: {
+      gridColumn: '1 / span 6',
     },
   }),
 ]);
