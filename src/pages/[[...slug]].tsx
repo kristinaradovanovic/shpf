@@ -2,7 +2,7 @@ import Seo from '@components/Seo/Seo';
 import IndexPage from '@components/subPages/IndexPage/IndexPage';
 import IndexPagePreview from '@components/subPages/IndexPage/IndexPagePreview';
 import { readToken } from '@lib/sanity/sanity.api';
-import { getAllPagesSlugs, getClient, getNode, getSettings } from '@lib/sanity/sanity.client';
+import { getAllPagesSlugs, getClient, getNode } from '@lib/sanity/sanity.client';
 import type { NodeTypeUnion, NodeTypeWithLocale } from '@lib/types/types';
 import type { SharedPageProps } from '@pages/_app';
 import { FooterSchemaType } from '@/schemas/footer/footer.types';
@@ -70,8 +70,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     };
   }
 
-  const [node, settings]: [NodeTypeWithLocale | string, Awaited<ReturnType<typeof getSettings>>] =
-    await Promise.all([getNode(client, slug ?? [], locale ?? ''), getSettings(client)]);
+  const [node]: [NodeTypeWithLocale | string] = await Promise.all([
+    getNode(client, slug ?? [], locale ?? ''),
+  ]);
 
   if (typeof node === 'string') {
     return {
@@ -97,7 +98,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       header: node.value.header,
       footer: node.value.footer,
       node: node.value,
-      settings: settings ?? null,
       draftMode,
       params: params,
       locale,
