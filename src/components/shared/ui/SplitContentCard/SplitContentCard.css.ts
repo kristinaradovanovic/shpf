@@ -93,7 +93,7 @@ export const headingWrap = style([
 export const descriptionText = style([
   bodyCopy,
   {
-    color: colors.navy700,
+    color: colors.slate500,
     margin: 0,
     paddingBlockEnd: spacings[20],
     whiteSpace: 'pre-wrap',
