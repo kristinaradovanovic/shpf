@@ -5,10 +5,16 @@ import { groq } from 'next-sanity';
 import { HomeHeroBlockQuery } from '../blocks/HomeHeroBlock/HomeHeroBlock.queries';
 import { SplitContentWithCtaBlockQuery } from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.queries';
 import { MembersCtaBlockQuery } from '../blocks/MembersCtaBlock/MembersCtaBlock.queries';
+import { PartnersCtaBlockQuery } from '../blocks/PartnersCtaBlock/PartnersCtaBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
-const blockQueries: any = [HomeHeroBlockQuery, SplitContentWithCtaBlockQuery, MembersCtaBlockQuery];
+const blockQueries: any = [
+  HomeHeroBlockQuery,
+  SplitContentWithCtaBlockQuery,
+  MembersCtaBlockQuery,
+  PartnersCtaBlockQuery,
+];
 
 const blockFields = groq`
     defined(isIndex) => {
