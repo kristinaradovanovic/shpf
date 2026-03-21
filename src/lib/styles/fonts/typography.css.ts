@@ -77,6 +77,21 @@ export const headingDescription = style([
   }),
 ]);
 
+export const sectionDescription = style([
+  {
+    fontFamily: 'var(--accent-font)',
+    fontWeight: 400,
+    fontSize: fontSizes[20],
+    lineHeight: '1.3',
+    letterSpacing: '-0.02em',
+  },
+  responsiveStyles({
+    desktop: {
+      fontSize: fontSizes[24],
+    },
+  }),
+]);
+
 export const labelText = style({
   fontFamily: 'var(--base-font)',
   fontWeight: 600,
