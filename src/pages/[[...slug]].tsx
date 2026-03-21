@@ -7,13 +7,11 @@ import type { NodeTypeUnion, NodeTypeWithLocale } from '@lib/types/types';
 import type { SharedPageProps } from '@pages/_app';
 import { FooterSchemaType } from '@/schemas/footer/footer.types';
 import { HeaderSchemaType } from '@schemas/header/header.types';
-import { Settings } from '@schemas/settings/settings.types';
 import type { GetStaticProps } from 'next';
 interface PageProps extends SharedPageProps {
   header: HeaderSchemaType;
   footer: FooterSchemaType;
   node: NodeTypeUnion;
-  settings: Settings;
   params: any;
   locale?: string;
   locales?: string[];
@@ -24,15 +22,7 @@ interface Query {
   [key: string]: string;
 }
 
-export default function Page({
-  draftMode,
-  params,
-  node,
-  header,
-  footer,
-  settings,
-  locale,
-}: PageProps) {
+export default function Page({ draftMode, params, node, header, footer, locale }: PageProps) {
   if (draftMode) {
     // Handles all the different page types inside the preview component
     return (
@@ -40,7 +30,6 @@ export default function Page({
         node={node}
         header={header}
         footer={footer}
-        settings={settings}
         params={params}
         locale={locale}
       />
@@ -55,10 +44,7 @@ export default function Page({
 
   return (
     <>
-      <Seo
-        node={node}
-        settings={settings}
-      />
+      <Seo node={node} />
       {/* <Header /> */}
       <p>Home page</p>
       <IndexPage node={node} />
@@ -112,7 +98,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       header: node.value.header,
       footer: node.value.footer,
       node: node.value,
-      settings: node.value.settings,
       draftMode,
       params: params,
       locale,

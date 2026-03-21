@@ -28,6 +28,6 @@ export const sectionTaglineContainer = style([
 export const sectionTaglineText = style([
   labelText,
   {
-    color: colors.text900,
+    color: colors.navy900,
   },
 ]);

@@ -12,8 +12,6 @@ import {
   getSitemapAllNodesQuery,
 } from '@schemas/node/node.queries';
 import { getAllPagesSlugsQuery } from '@schemas/page/page.queries';
-import { settingsFields } from '@schemas/settings/settings.queries';
-import { Settings } from '@schemas/settings/settings.types';
 import { createClient, type SanityClient } from 'next-sanity';
 
 export function getClient(
@@ -47,10 +45,6 @@ export function getClient(
 }
 
 export const getSanityImageConfig = () => getClient();
-
-export async function getSettings(client: SanityClient): Promise<Settings> {
-  return (await client.fetch(settingsFields)) || {};
-}
 
 export async function getAllPagesSlugs(
   client: SanityClient,

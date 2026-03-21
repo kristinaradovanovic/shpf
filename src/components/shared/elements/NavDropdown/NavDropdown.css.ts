@@ -14,15 +14,15 @@ export const dropdownButton = style({
   display: 'inline-flex',
   alignItems: 'center',
   gap: spacings[6],
-  color: colors.link,
+  color: colors.navy700,
   fontWeight: 500,
 
   selectors: {
     '&:hover': {
-      color: colors.orangeAccent,
+      color: colors.gold400,
     },
     '&:focus-visible': {
-      outline: `2px solid ${colors.orangeAccent}`,
+      outline: `2px solid ${colors.gold400}`,
       outlineOffset: '4px',
     },
   },
@@ -36,16 +36,16 @@ export const dropdownIcon = style({
   transition: 'transform 0.2s ease',
   height: '20px',
   width: '20px',
-  fill: colors.link,
+  fill: colors.navy700,
 
   selectors: {
     [`${dropdownWrapper}:hover &`]: {
       transform: 'rotate(180deg)',
-      fill: colors.orangeAccent,
+      fill: colors.gold400,
     },
     [`${dropdownWrapper}:focus-within &`]: {
       transform: 'rotate(180deg)',
-      fill: colors.orangeAccent,
+      fill: colors.gold400,
     },
   },
 });

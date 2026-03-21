@@ -10,17 +10,6 @@ export const richTextItemsSchemaFields = groq`
   _type == "richTextCtaButton" => {
     ${richTextCtaButtonSchemaFields}
   },
-  _type == "video" => {
-    ...,
-    "videoReference": videoReference-> {
-    ...,
-    videoType == "video" => {
-      "video": video.asset-> {
-      ...
-      }
-    }
-    }
-  },
   _type == "block" && markDefs[0].linkType == "internal" => {
     markDefs[]{
     ...,

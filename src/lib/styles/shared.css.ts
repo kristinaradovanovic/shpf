@@ -45,10 +45,10 @@ export const sharedAccordionItem = recipe({
     lightBackground: {
       true: [
         {
-          borderBlockStart: `1px solid ${colors.cardCoral}`,
+          borderBlockStart: `1px solid ${colors.mist200}`,
           selectors: {
             '&:last-child': {
-              borderBlockEnd: `1px solid ${colors.cardCoral}`,
+              borderBlockEnd: `1px solid ${colors.mist200}`,
             },
           },
         },
@@ -180,7 +180,7 @@ export const sharedAccordionInfoText = recipe({
     bodyCopy,
     {
       paddingBlockEnd: spacings[24],
-      color: colors.text500,
+      color: colors.slate500,
     },
     responsiveStyles({
       desktop: {

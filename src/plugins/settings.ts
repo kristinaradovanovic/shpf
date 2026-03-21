@@ -14,6 +14,10 @@ import { DocumentIcon, FolderIcon, AddDocumentIcon, ThListIcon, SchemaIcon } fro
 const PAGE_STRUCTURE_MAX_DEPTH = 4;
 
 const FALLBACK_SCHEMA_TYPE = 'page';
+const CONTENT_LANGUAGES = [
+  { id: 'sv', title: 'Swedish' },
+  { id: 'en', title: 'English' },
+];
 
 const pageStructureTitles = {
   CONTENT_OF: 'Contents of',
@@ -79,6 +83,7 @@ function buildRecursiveChildren(
   depth: number,
   maxDepth: number,
   schemaType: string,
+  language: string,
 ): any {
   if (depth > maxDepth) {
     return documentWithPreview(S, schemaType, documentId);
@@ -102,9 +107,11 @@ function buildRecursiveChildren(
         .child(
           S.documentList()
             .title(pageStructureTitles.CHILDREN)
-            .filter(groq`defined(node) && node.slugParent._ref == $documentId`)
+            .filter(
+              groq`defined(node) && node.slugParent._ref == $documentId && language == $language`,
+            )
             .apiVersion('2023-06-21')
-            .params({ documentId })
+            .params({ documentId, language })
             .child(async (childDocumentId: string) => {
               const doc = (await client.fetch(groq`*[_id == $childDocumentId][0]{_type}`, {
                 childDocumentId,
@@ -118,6 +125,7 @@ function buildRecursiveChildren(
                 depth + 1,
                 maxDepth,
                 doc?._type || FALLBACK_SCHEMA_TYPE,
+                language,
               );
             }),
         ),
@@ -139,6 +147,7 @@ function buildRecursiveChildren(
                       schemaType: childPage.schemaType,
                     }).initialValueTemplate(childPage.initialValueTemplate, {
                       parentId: documentId,
+                      language,
                     }),
                   );
               }),
@@ -160,110 +169,150 @@ export const settingsStructure = (typeDef: DocumentDefinition): StructureResolve
         .icon(typeDef.icon as any)
         .child(S.editor().id(typeDef.name).schemaType(typeDef.name).documentId(typeDef.name));
 
-    // The default root list items (except custom ones) + hide hierarchy.tree
-    const defaultListItems = S.documentTypeListItems().filter(
-      (listItem) =>
-        listItem.getId() !== typeDef.name &&
-        listItem.getId() !== 'hierarchy.tree' &&
-        listItem.getId() !== 'navbarHierarchyItem',
-    );
-
-    // add dividers after the given list items
-    const modifiedListItems = defaultListItems
-      ?.map((listItem) => {
-        const itemId = listItem.getId() as string;
-        const toSkip: string[] = [
-          'footer',
-          'keyword',
-          'sanity.previewUrlSecret',
-          'translation.metadata',
-          'media.tag',
-          'videoObject',
-        ];
-
-        if (toSkip.includes(itemId)) {
-          return [];
-        }
-
-        if (itemId === 'author') {
-          return [
-            S.divider().title('Global Objects'),
-            S.listItem()
-              .title('Microcopy')
-              .icon(FolderIcon as any)
-              .child(S.list().title('Microcopy').items([])),
-            S.documentTypeListItem('author'),
-            S.documentTypeListItem('videoObject'),
-            S.documentTypeListItem('keyword'),
-          ];
-        }
-
-        if (itemId === 'header') {
-          return [
-            S.divider().title('Layout Components'),
-            S.listItem()
-              .title('Layout Components')
-              .icon(ThListIcon as any)
-              .child(
-                S.list()
-                  .title('Layout Components')
-                  .items([
-                    S.listItem()
-                      .title('Header')
-                      .icon(ThListIcon as any)
-                      .child(S.documentTypeList('header')),
-                    S.listItem()
-                      .title('Footer')
-                      .icon(ThListIcon as any)
-                      .child(S.documentTypeList('footer')),
-                  ]),
-              ),
-          ];
-        }
-
-        if (itemId === 'page') {
-          return [
-            S.divider().title('Content Types'),
-            S.listItem().title('Pages').child(S.documentTypeList('page')),
-            S.listItem()
-              .title('Page Structure')
-              .icon(SchemaIcon as any)
-              .child(
-                S.documentList()
-                  .title('Page Structure')
-                  .filter(groq`_type == $type && isRoot`)
-                  .apiVersion('2023-06-21')
-                  .params({ type: pageStructureHomeObject.schemaType })
-                  .schemaType(pageStructureHomeObject.schemaType)
-                  .child((homePageId) => {
-                    return buildRecursiveChildren(
-                      client,
-                      S,
-                      homePageId,
-                      1,
-                      PAGE_STRUCTURE_MAX_DEPTH,
-                      pageStructureHomeObject.schemaType,
-                    );
-                  }),
-              ),
-          ];
-        }
-
-        if (itemId === 'redirect') {
-          return [
-            S.divider().title('Additional'),
-            S.documentTypeListItem('translation.metadata'),
-            S.documentTypeListItem('redirect'),
-            S.documentTypeListItem('media.tag'),
-          ];
-        }
-
-        return listItem;
-      })
-      .flat();
-
     return S.list()
       .title('Studio')
-      .items([S.divider().title('Settings'), settingsListItem, ...modifiedListItems]);
+      .items([
+        S.divider().title('Settings'),
+        settingsListItem,
+        S.divider().title('Pages'),
+        S.listItem()
+          .title('Pages')
+          .icon(DocumentIcon as any)
+          .child(
+            S.list()
+              .title('Pages')
+              .items(
+                CONTENT_LANGUAGES.map((language) =>
+                  S.listItem()
+                    .title(language.title)
+                    .icon(FolderIcon as any)
+                    .child(
+                      S.list()
+                        .title(`${language.title} Pages`)
+                        .items([
+                          S.listItem()
+                            .title('Pages')
+                            .icon(DocumentIcon as any)
+                            .child(
+                              S.documentList()
+                                .title(`${language.title} Pages`)
+                                .filter(groq`_type == $type && language == $language`)
+                                .apiVersion('2023-06-21')
+                                .params({ type: 'page', language: language.id }),
+                            ),
+                          S.listItem()
+                            .title('Page Structure')
+                            .icon(SchemaIcon as any)
+                            .child(
+                              S.documentList()
+                                .title(`${language.title} Page Structure`)
+                                .filter(groq`_type == $type && isRoot && language == $language`)
+                                .apiVersion('2023-06-21')
+                                .params({
+                                  type: pageStructureHomeObject.schemaType,
+                                  language: language.id,
+                                })
+                                .schemaType(pageStructureHomeObject.schemaType)
+                                .child((homePageId) => {
+                                  return buildRecursiveChildren(
+                                    client,
+                                    S,
+                                    homePageId,
+                                    1,
+                                    PAGE_STRUCTURE_MAX_DEPTH,
+                                    pageStructureHomeObject.schemaType,
+                                    language.id,
+                                  );
+                                }),
+                            ),
+                        ]),
+                    ),
+                ),
+              ),
+          ),
+        S.divider().title('Layout Components'),
+        S.listItem()
+          .title('Layout Components')
+          .icon(ThListIcon as any)
+          .child(
+            S.list()
+              .title('Layout Components')
+              .items(
+                CONTENT_LANGUAGES.map((language) =>
+                  S.listItem()
+                    .title(language.title)
+                    .icon(FolderIcon as any)
+                    .child(
+                      S.list()
+                        .title(`${language.title} Layout Components`)
+                        .items([
+                          S.listItem()
+                            .title('Header')
+                            .icon(ThListIcon as any)
+                            .child(
+                              S.documentList()
+                                .title(`${language.title} Header`)
+                                .filter(groq`_type == "header" && language == $language`)
+                                .apiVersion('2023-06-21')
+                                .params({ language: language.id }),
+                            ),
+                          S.listItem()
+                            .title('Footer')
+                            .icon(ThListIcon as any)
+                            .child(
+                              S.documentList()
+                                .title(`${language.title} Footer`)
+                                .filter(groq`_type == "footer" && language == $language`)
+                                .apiVersion('2023-06-21')
+                                .params({ language: language.id }),
+                            ),
+                        ]),
+                    ),
+                ),
+              ),
+          ),
+        S.divider().title('Content blocks'),
+        S.listItem()
+          .title('Content blocks')
+          .icon(FolderIcon as any)
+          .child(
+            S.list()
+              .title('Content blocks')
+              .items(
+                CONTENT_LANGUAGES.map((language) =>
+                  S.listItem()
+                    .title(language.title)
+                    .icon(FolderIcon as any)
+                    .child(
+                      S.list()
+                        .title(`${language.title} Content blocks`)
+                        .items([
+                          S.listItem()
+                            .title('Team Members')
+                            .icon(FolderIcon as any)
+                            .child(S.list().title('Team Members').items([])),
+                          S.listItem()
+                            .title('Hotel Members')
+                            .icon(FolderIcon as any)
+                            .child(S.list().title('Hotel Members').items([])),
+                          S.listItem()
+                            .title('Partners')
+                            .icon(FolderIcon as any)
+                            .child(S.list().title('Partners').items([])),
+                        ]),
+                    ),
+                ),
+              ),
+          ),
+        S.divider().title('SEO'),
+        S.listItem()
+          .title('SEO')
+          .icon(FolderIcon as any)
+          .child(
+            S.list()
+              .title('SEO')
+              .items([S.documentTypeListItem('keyword'), S.documentTypeListItem('redirect')]),
+          ),
+      ]);
   };
 };

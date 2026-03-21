@@ -1,5 +1,5 @@
 import { backgroundColors } from '@lib/styles/variables/colors';
-import { LinkIcon, PlayIcon, TagIcon } from '@sanity/icons';
+import { LinkIcon, TagIcon } from '@sanity/icons';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
 const schemaName = 'richTextItems';
@@ -143,65 +143,6 @@ export default defineType({
           //   preview: ,
           // },
         },
-        defineArrayMember({
-          name: 'video',
-          title: 'video',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'videoReference',
-              title: 'Video',
-              type: 'reference',
-              to: [{ type: 'videoObject' }],
-            }),
-            defineField({
-              name: 'showDescription',
-              title: 'Show Description?',
-              description:
-                'Turn the toggle on to display the descriptive text below the video on the website',
-              type: 'boolean',
-              initialValue: false,
-            }),
-            defineField({
-              name: 'shouldAutoplay',
-              title: 'Should the video autoplay?',
-              description:
-                'Turn the toggle on to autoplay the video when the page loads. If autoplay is on, the video will be muted.',
-              type: 'boolean',
-              initialValue: false,
-            }),
-            defineField({
-              name: 'onMute',
-              title: 'Should the video be muted?',
-              description:
-                'Turn the toggle on to have the video muted. This will only work if autoplay is turned off.',
-              type: 'boolean',
-              initialValue: false,
-              hidden: ({ parent }) => parent?.shouldAutoplay === true,
-            }),
-          ],
-          preview: {
-            select: {
-              title: 'videoReference.title',
-              videoType: 'videoReference.videoType',
-              shouldAutoplay: 'shouldAutoplay',
-              onMute: 'onMute',
-            },
-            prepare({ title, videoType, shouldAutoplay, onMute }) {
-              const videoTypeTitle = videoType === 'video' ? 'Uploaded Video' : 'Embedded Video';
-              const autoplayTitle = shouldAutoplay ? ' | With autoplay ' : ' | No autoplay ';
-              const onMuteTitle = onMute || shouldAutoplay ? ' | Muted ' : ' | Not muted ';
-
-              const subtitle = videoTypeTitle + autoplayTitle + onMuteTitle;
-
-              return {
-                title: title || 'Untitled Video',
-                subtitle: subtitle,
-                icon: PlayIcon,
-              };
-            },
-          },
-        }),
         defineArrayMember({
           type: 'image',
           title: 'Image',
