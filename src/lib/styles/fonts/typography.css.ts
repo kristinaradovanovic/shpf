@@ -6,13 +6,13 @@ export const h1 = style([
   {
     fontFamily: 'var(--accent-font)',
     fontWeight: 600,
-    fontSize: '60px',
+    fontSize: fontSizes[60],
     lineHeight: '1.05',
     letterSpacing: '-0.04em',
   },
   responsiveStyles({
     desktop: {
-      fontSize: '80px',
+      fontSize: fontSizes[80],
     },
   }),
 ]);

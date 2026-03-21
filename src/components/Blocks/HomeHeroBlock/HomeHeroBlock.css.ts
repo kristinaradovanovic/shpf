@@ -15,14 +15,11 @@ export const homeHeroGridStyle = style([
   gridStyle({ inlinePadding: 'none' }),
   {
     position: 'relative',
-    display: 'grid',
-    gridTemplateColumns: '1fr',
     minHeight: '100vh',
     width: '100%',
   },
   responsiveStyles({
     desktop: {
-      gridTemplateColumns: 'repeat(12, 1fr)',
       minHeight: '100vh',
     },
   }),
