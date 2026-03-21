@@ -1,10 +1,8 @@
 import {
-  blinkingIconStyle,
   sectionTaglineContainer,
   sectionTaglineText,
 } from '@components/shared/elements/SectionTagline/SectionTagline.css';
 import { SectionTaglineProps } from '@components/shared/elements/SectionTagline/SectionTagline.types';
-import { PawIcon } from '@components/shared/ui/icons/PawIcon';
 
 export const SectionTagline = ({ text, id }: SectionTaglineProps) => {
   const generatedId =
@@ -19,7 +17,7 @@ export const SectionTagline = ({ text, id }: SectionTaglineProps) => {
       className={sectionTaglineContainer}
       id={generatedId}
     >
-      <PawIcon className={blinkingIconStyle} /> <p className={sectionTaglineText}>{text}</p>
+      <p className={sectionTaglineText}>{text}</p>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { backgroundColorKeys } from '@lib/styles/variables/colors';
+import { imageField } from '@lib/fields/image-field/image-field';
 import { BlockContentIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
@@ -10,6 +10,14 @@ export default defineType({
   icon: BlockContentIcon as any,
   type: 'object',
   fields: [
+    defineField(imageField({ image: { required: false }, alt: { required: false } })),
+    defineField({
+      name: 'sectionTagline',
+      title: 'Section tagline',
+      description:
+        'A short, descriptive text that appears above the title to provide context or highlight the content of the card.',
+      type: 'string',
+    }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -23,27 +31,9 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          description: 'Icon for the service category item',
-        },
-      ],
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'backgroundColor',
-      title: 'Background Color',
-      type: 'string',
-      initialValue: backgroundColorKeys['White'],
-      options: {
-        list: Object.keys(backgroundColorKeys),
-      },
+      name: 'ctaButton',
+      title: 'CTA Button',
+      type: 'ctaButtonItem',
     }),
   ],
 });
