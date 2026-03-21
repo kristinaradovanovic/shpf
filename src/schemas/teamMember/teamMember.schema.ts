@@ -6,9 +6,9 @@ const blockName = 'teamMember';
 
 export default defineType({
   name: blockName,
-  title: blockName,
+  title: 'Team Member',
   icon: BlockContentIcon as any,
-  type: 'object',
+  type: 'document',
   fields: [
     defineField(imageField({ image: { required: false }, alt: { required: false } })),
     defineField({

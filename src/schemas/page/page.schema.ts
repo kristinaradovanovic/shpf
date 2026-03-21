@@ -11,6 +11,7 @@ import {
 import { getTranslationsByID, getTranslationsRefByID } from '@schemas/node/node.queries';
 import HomeHeroBlockSchema from '../blocks/HomeHeroBlock/HomeHeroBlock.schema';
 import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
+import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
 
 export const schemaName = 'page';
 export const schemaTitle = 'Page';
@@ -114,7 +115,11 @@ export default defineType({
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
-      of: [{ type: HomeHeroBlockSchema.name }, { type: SplitContentWithCtaBlockSchema.name }],
+      of: [
+        { type: HomeHeroBlockSchema.name },
+        { type: SplitContentWithCtaBlockSchema.name },
+        { type: MembersCtaBlockSchema.name },
+      ],
       description: 'The modular blocks that make up this page.',
       hidden: ({ parent }) => !parent?.isIndex,
       options: {

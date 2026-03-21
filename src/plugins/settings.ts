@@ -290,7 +290,7 @@ export const settingsStructure = (typeDef: DocumentDefinition): StructureResolve
                           S.listItem()
                             .title('Team Members')
                             .icon(FolderIcon as any)
-                            .child(S.list().title('Team Members').items([])),
+                            .child(S.documentTypeList('teamMember').title('Team Members')),
                           S.listItem()
                             .title('Hotel Members')
                             .icon(FolderIcon as any)
