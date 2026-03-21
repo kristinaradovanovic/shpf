@@ -31,11 +31,13 @@ import richTextCtaButtonSchema from '@schemas/richTextCtaButton/richTextCtaButto
 import titleWithKeywordsItemSchema from '@schemas/titleWithKeywordsItem/titleWithKeywordsItem.schema';
 import HomeHeroBlockSchema from '@/schemas/blocks/HomeHeroBlock/HomeHeroBlock.schema';
 import SplitContentWithCtaBlockSchema from '@/schemas/blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
+import contentItemSchema from '@/schemas/contentItem/contentItem.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
 export const schemas = [
   // hierarchyTree,
+  contentItemSchema,
   settingsSchema,
   headerSchema,
   headerItemSchema,
