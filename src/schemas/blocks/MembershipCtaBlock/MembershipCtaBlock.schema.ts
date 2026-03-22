@@ -33,7 +33,7 @@ export default defineType({
       name: 'highlightCards',
       title: 'Highlight Cards',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'highlightCard' }] }],
+      of: [{ type: 'highlightCard' }],
       validation: (rule) => rule.required().min(4).max(4),
     }),
     defineField({

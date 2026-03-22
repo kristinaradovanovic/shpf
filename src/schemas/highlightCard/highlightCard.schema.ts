@@ -8,7 +8,7 @@ export default defineType({
   name: blockName,
   title: 'Highlight Card',
   icon: BlockContentIcon as any,
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({
       name: 'title',
@@ -49,8 +49,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'partnerName',
-      media: 'image',
+      title: 'title',
+      media: 'icon',
     },
   },
 });

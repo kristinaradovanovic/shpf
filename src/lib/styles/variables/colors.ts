@@ -4,6 +4,7 @@ export const colors = {
   gold500: '#B38719',
   gold600: '#B4891F',
   navy700: '#11233C',
+  slate300: '#B3BAC5',
   slate400: '#8D9BAD',
   slate500: '#5C708A',
   slate600: '#5E728B',
