@@ -82,6 +82,30 @@ export const buttonStyle = recipe({
           },
         },
       },
+      headerPremium: {
+        backgroundColor: colors.navy700,
+        color: colors.white,
+        borderColor: colors.gold500,
+        borderRadius: '999px',
+        fontFamily: 'var(--accent-font)',
+        letterSpacing: '0.03em',
+        textTransform: 'uppercase',
+        minWidth: 'unset',
+        blockSize: '44px',
+        paddingInline: spacings[24],
+        selectors: {
+          '&:hover': {
+            backgroundColor: colors.gold500,
+            color: colors.navy700,
+            borderColor: colors.gold500,
+          },
+          '&:active': {
+            backgroundColor: colors.gold500,
+            color: colors.navy700,
+            borderColor: colors.gold500,
+          },
+        },
+      },
     },
     isDisabled: {
       true: {

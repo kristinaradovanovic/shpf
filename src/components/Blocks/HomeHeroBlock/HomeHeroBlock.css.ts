@@ -5,22 +5,38 @@ import { colors } from '@lib/styles/variables/colors';
 import { spacings } from '@lib/styles/variables/spacings';
 import { style } from '@vanilla-extract/css';
 
-export const homeHeroSectionStyle = style({
-  position: 'relative',
-  overflow: 'hidden',
-  minHeight: '100vh',
-});
+export const homeHeroSectionStyle = style([
+  {
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: 'calc(100vh - 152px)',
+  },
+  responsiveStyles({
+    mobile: {
+      minHeight: 'calc(100vh - 78px)',
+    },
+    tablet: {
+      minHeight: 'calc(100vh - 152px)',
+    },
+  }),
+]);
 
 export const homeHeroGridStyle = style([
   gridStyle({ inlinePadding: 'none' }),
   {
     position: 'relative',
-    minHeight: '100vh',
+    minHeight: 'calc(100vh - 152px)',
     width: '100%',
   },
   responsiveStyles({
+    mobile: {
+      minHeight: 'calc(100vh - 78px)',
+    },
+    tablet: {
+      minHeight: 'calc(100vh - 152px)',
+    },
     desktop: {
-      minHeight: '100vh',
+      minHeight: 'calc(100vh - 152px)',
     },
   }),
 ]);
