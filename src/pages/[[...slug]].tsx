@@ -8,6 +8,7 @@ import type { SharedPageProps } from '@pages/_app';
 import { FooterSchemaType } from '@/schemas/footer/footer.types';
 import { HeaderSchemaType } from '@schemas/header/header.types';
 import type { GetStaticProps } from 'next';
+import Header from '@/components/pageStructure/Header/Header';
 interface PageProps extends SharedPageProps {
   header: HeaderSchemaType;
   footer: FooterSchemaType;
@@ -45,7 +46,7 @@ export default function Page({ draftMode, params, node, header, footer, locale }
   return (
     <>
       <Seo node={node} />
-      {/* <Header /> */}
+      <Header {...header} />
       <IndexPage node={node} />
       {/*     <Footer
         footer={footer}
