@@ -1,5 +1,6 @@
 import { BlockContentIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
+import { highlightCardColorKeys } from '@lib/styles/variables/colors';
 
 const blockName = 'highlightCard';
 
@@ -32,6 +33,18 @@ export default defineType({
         },
       ],
       options: { hotspot: true },
+    }),
+    defineField({
+      name: 'colorVariant',
+      title: 'Color Variant',
+      type: 'string',
+      options: {
+        list: Object.entries(highlightCardColorKeys).map(([key, value]) => ({
+          title: key,
+          value: value,
+        })),
+      },
+      initialValue: 'White',
     }),
   ],
   preview: {

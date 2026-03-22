@@ -15,6 +15,7 @@ export const colors = {
   blue800: '#1C3C63',
   slate700: '#2B3F57',
   navy900: '#0B1C33',
+  highlightCardDark: '#163358',
 };
 
 export const backgroundColors = {
@@ -76,3 +77,15 @@ export const backgroundColorKeys = Object.fromEntries(
 export const buttonColorKeys = Object.fromEntries(
   Object.keys(buttonColors)?.map((key) => [key, key]),
 ) as Record<ButtonColorKeys, ButtonColorKeys>;
+
+export const highlightCardColors = {
+  White: colors.white,
+  Dark: colors.highlightCardDark,
+};
+
+export type HighlightCardColorTypes = keyof typeof highlightCardColors;
+export type HighlightCardColorKeys = keyof typeof highlightCardColors;
+
+export const highlightCardColorKeys = Object.fromEntries(
+  Object.keys(highlightCardColors).map((key) => [key, key]),
+) as Record<HighlightCardColorKeys, HighlightCardColorKeys>;
