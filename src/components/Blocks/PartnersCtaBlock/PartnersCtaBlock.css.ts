@@ -1,3 +1,4 @@
+import { responsiveStyles } from '@/lib/styles/csshelpers';
 import { sectionDescription } from '@/lib/styles/fonts/typography.css';
 import { colors } from '@/lib/styles/variables/colors';
 import { spacings } from '@/lib/styles/variables/spacings';
@@ -79,3 +80,17 @@ export const partnerNameStyle = style({
   textAlign: 'center',
   fontWeight: 600,
 });
+
+export const buttonWrapperStyle = style([
+  {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    paddingBlockStart: spacings[20],
+  },
+  responsiveStyles({
+    tablet: {
+      justifyContent: 'center',
+      paddingBlockStart: spacings[40],
+    },
+  }),
+]);
