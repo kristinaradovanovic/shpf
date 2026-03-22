@@ -38,6 +38,7 @@ import partnerItemSchema from '@/schemas/partnerItem/partnerItem.schema';
 import PartnersCtaBlockSchema from '@/schemas/blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
 import highlightCardSchema from '@/schemas/highlightCard/highlightCard.schema';
 import MembershipCtaBlockSchema from '@/schemas/blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
+import headerCtaButtonItemSchema from '@schemas/headerCtaButtonItem/headerCtaButtonItem.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -65,6 +66,7 @@ export const schemas = [
   cardListItemSchema,
   cardItemSchema,
   ctaButtonItemSchema,
+  headerCtaButtonItemSchema,
   faqItemSchema,
   faqGroupItemSchema,
   navbarHierarchyItemSchema,

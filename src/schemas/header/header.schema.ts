@@ -1,4 +1,3 @@
-import { buttonColorKeys } from '@lib/styles/variables/colors';
 import { ThListIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
@@ -13,10 +12,6 @@ export default defineType({
     {
       name: 'main',
       title: 'Main',
-    },
-    {
-      name: 'navSocials',
-      title: 'Social links',
     },
     {
       name: 'headerItems',
@@ -40,13 +35,6 @@ export default defineType({
         }),
     }),
     defineField({
-      name: 'navSocials',
-      title: 'Social links',
-      type: 'navSocial',
-      description: 'The social links in the header',
-      group: ['navSocials'],
-    }),
-    defineField({
       name: 'headerItems',
       title: 'Header items',
       type: 'array',
@@ -55,19 +43,10 @@ export default defineType({
       group: ['headerItems'],
     }),
     defineField({
-      name: 'buttonColor',
-      title: 'Button Color',
-      type: 'string',
-      options: {
-        list: Object.keys(buttonColorKeys),
-      },
-    }),
-    defineField({
-      name: 'ctaButtonText',
-      title: 'CTA Button Text',
-      type: 'string',
-      description: 'The text to display on the CTA button, for example "Ge en gåva"',
-      placeholder: 'Ge en gåva nu',
+      name: 'ctaButton',
+      title: 'CTA Button',
+      type: 'headerCtaButtonItem',
+      group: ['main'],
     }),
   ],
 });

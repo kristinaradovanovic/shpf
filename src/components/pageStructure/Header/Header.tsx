@@ -1,122 +1,102 @@
 import { HeaderSchemaType } from '@/schemas/header/header.types';
 import { useEffect, useRef, useState } from 'react';
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as styles from './Header.css';
+import HeaderDesktop from './HeaderDesktop';
+import HeaderMobile from './HeaderMobile';
 
-const Header = ({ headerItems, ctaButtonText }: HeaderSchemaType) => {
+const Header = ({ headerItems, ctaButton }: HeaderSchemaType) => {
+  const { locale, asPath } = useRouter();
   const [isCompact, setIsCompact] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const compactRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
+  const currentLocale = (locale || 'sv').toLowerCase();
 
   useEffect(() => {
-    const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY.current;
+    const DESKTOP_MIN_WIDTH = 1024;
 
-      if (currentScrollY <= 32) {
-        setIsCompact(false);
-      } else if (isScrollingDown) {
-        setIsCompact(true);
-      } else {
-        setIsCompact(false);
+    const isDesktopViewport = () => window.innerWidth >= DESKTOP_MIN_WIDTH;
+
+    const onScrollFrame = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+      const TOP_EXPAND_THRESHOLD = 32;
+      const DOWN_COMPACT_DELTA = 4;
+      const UP_EXPAND_DELTA = -8;
+
+      let nextCompact = compactRef.current;
+
+      if (!isDesktopViewport()) {
+        nextCompact = false;
+      } else if (currentScrollY <= TOP_EXPAND_THRESHOLD) {
+        nextCompact = false;
+      } else if (delta > DOWN_COMPACT_DELTA) {
+        nextCompact = true;
+      } else if (delta < UP_EXPAND_DELTA) {
+        nextCompact = false;
+      }
+
+      if (nextCompact !== compactRef.current) {
+        compactRef.current = nextCompact;
+        setIsCompact(nextCompact);
       }
 
       lastScrollY.current = currentScrollY;
+      rafRef.current = null;
     };
 
-    onScroll();
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => {
+      if (rafRef.current !== null) {
+        return;
+      }
+
+      rafRef.current = window.requestAnimationFrame(onScrollFrame);
+    };
+
+    const onResize = () => {
+      if (!isDesktopViewport()) {
+        compactRef.current = false;
+        setIsCompact(false);
+      }
+    };
+
+    lastScrollY.current = window.scrollY;
+    compactRef.current = isDesktopViewport() && window.scrollY > 32;
+    setIsCompact(compactRef.current);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
+  const shouldCompact = isCompact && !isMobileMenuOpen;
+
   return (
-    <header className={`${styles.header} ${isCompact ? styles.headerCompact : ''}`}>
+    <header className={`${styles.header} ${shouldCompact ? styles.headerCompact : ''}`}>
       <div className={styles.headerInner}>
-        <div className={`${styles.topRow} ${isCompact ? styles.topRowCompact : ''}`}>
-          <Link
-            href="/"
-            className={styles.logoLink}
-            aria-label="Go to homepage"
-          >
-            <div className={styles.logoBadgeWrap}>
-              <span className={styles.logoPoint} />
-              <span className={styles.logoBadge}>Σ</span>
-            </div>
-          </Link>
-
-          <div className={`${styles.siteTitle} ${isCompact ? styles.siteTitleCompact : ''}`}>
-            Les Clefs d&apos;Or Sweden
-          </div>
-
-          <button className={styles.ctaButton}>{ctaButtonText || 'Become a Member'}</button>
-
-          <button
-            type="button"
-            className={styles.mobileMenuButton}
-            aria-label="Open navigation menu"
-            aria-expanded={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          >
-            <span
-              className={`${styles.mobileMenuLine} ${isMobileMenuOpen ? styles.mobileMenuLineTopOpen : ''}`}
-            />
-            <span
-              className={`${styles.mobileMenuLine} ${isMobileMenuOpen ? styles.mobileMenuLineMiddleOpen : ''}`}
-            />
-            <span
-              className={`${styles.mobileMenuLine} ${isMobileMenuOpen ? styles.mobileMenuLineBottomOpen : ''}`}
-            />
-          </button>
-        </div>
-
-        <div className={`${styles.bottomRow} ${isCompact ? styles.bottomRowCompact : ''}`}>
-          <nav className={styles.nav}>
-            <ul className={styles.navList}>
-              {headerItems?.map((item) => {
-                const slug = item?.page?.slug;
-                const href = !slug ? '/' : `/${slug}`;
-
-                return (
-                  <li key={item._key}>
-                    <Link
-                      href={href}
-                      className={styles.navLink}
-                    >
-                      {item?.page?.title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </div>
-
-        <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.mobileNavOpen : ''}`}>
-          <nav aria-label="Mobile navigation">
-            <ul className={styles.mobileNavList}>
-              {headerItems?.map((item) => {
-                const slug = item?.page?.slug;
-                const href = !slug ? '/' : `/${slug}`;
-
-                return (
-                  <li key={item._key}>
-                    <Link
-                      href={href}
-                      className={styles.mobileNavLink}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item?.page?.title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </div>
+        <HeaderDesktop
+          headerItems={headerItems}
+          ctaButton={ctaButton}
+          isCompact={shouldCompact}
+          currentLocale={currentLocale}
+          asPath={asPath}
+        />
+        <HeaderMobile
+          headerItems={headerItems}
+          currentLocale={currentLocale}
+          asPath={asPath}
+          isMobileMenuOpen={isMobileMenuOpen}
+          onToggle={() => setIsMobileMenuOpen((prev) => !prev)}
+        />
       </div>
     </header>
   );
