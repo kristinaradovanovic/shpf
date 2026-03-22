@@ -4,6 +4,7 @@ export const colors = {
   gold500: '#B38719',
   gold600: '#B4891F',
   navy700: '#11233C',
+  slate300: '#B3BAC5',
   slate400: '#8D9BAD',
   slate500: '#5C708A',
   slate600: '#5E728B',
@@ -15,6 +16,7 @@ export const colors = {
   blue800: '#1C3C63',
   slate700: '#2B3F57',
   navy900: '#0B1C33',
+  highlightCardDark: '#163358',
 };
 
 export const backgroundColors = {
@@ -76,3 +78,15 @@ export const backgroundColorKeys = Object.fromEntries(
 export const buttonColorKeys = Object.fromEntries(
   Object.keys(buttonColors)?.map((key) => [key, key]),
 ) as Record<ButtonColorKeys, ButtonColorKeys>;
+
+export const highlightCardColors = {
+  White: colors.white,
+  Dark: colors.highlightCardDark,
+};
+
+export type HighlightCardColorTypes = keyof typeof highlightCardColors;
+export type HighlightCardColorKeys = keyof typeof highlightCardColors;
+
+export const highlightCardColorKeys = Object.fromEntries(
+  Object.keys(highlightCardColors).map((key) => [key, key]),
+) as Record<HighlightCardColorKeys, HighlightCardColorKeys>;
