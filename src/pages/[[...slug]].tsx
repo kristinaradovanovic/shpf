@@ -1,6 +1,8 @@
 import Seo from '@components/Seo/Seo';
+import HeroWithSubpagesBlock from '@components/Blocks/HeroWithSubpagesBlock/HeroWithSubpagesBlock';
 import IndexPage from '@components/subPages/IndexPage/IndexPage';
 import IndexPagePreview from '@components/subPages/IndexPage/IndexPagePreview';
+import { resolveFilterPageContent } from '@lib/helpers/filter-page.helpers';
 import { readToken } from '@lib/sanity/sanity.api';
 import { getAllPagesSlugs, getClient, getNode } from '@lib/sanity/sanity.client';
 import type { NodeTypeUnion, NodeTypeWithLocale } from '@lib/types/types';
@@ -9,6 +11,8 @@ import { FooterSchemaType } from '@/schemas/footer/footer.types';
 import { HeaderSchemaType } from '@schemas/header/header.types';
 import type { GetStaticProps } from 'next';
 import Header from '@/components/pageStructure/Header/Header';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 interface PageProps extends SharedPageProps {
   header: HeaderSchemaType;
   footer: FooterSchemaType;
@@ -24,11 +28,32 @@ interface Query {
 }
 
 export default function Page({ draftMode, params, node, header, footer, locale }: PageProps) {
+  const router = useRouter();
+  const pageQueryParam = typeof router.query.page === 'string' ? router.query.page : undefined;
+  const {
+    effectiveNode,
+    filterPages,
+    defaultFilterPage,
+    activeFilterPage,
+    shouldRedirectToDefault,
+  } = resolveFilterPageContent(node, pageQueryParam);
+
+  useEffect(() => {
+    if (!router.isReady || !defaultFilterPage?.slug || !shouldRedirectToDefault || draftMode) {
+      return;
+    }
+
+    const currentPath = router.asPath.split('?')[0];
+    void router.replace(`${currentPath}?page=${defaultFilterPage.slug}`, undefined, {
+      shallow: true,
+    });
+  }, [defaultFilterPage?.slug, draftMode, router, shouldRedirectToDefault]);
+
   if (draftMode) {
     // Handles all the different page types inside the preview component
     return (
       <IndexPagePreview
-        node={node}
+        node={effectiveNode}
         header={header}
         footer={footer}
         params={params}
@@ -39,15 +64,29 @@ export default function Page({ draftMode, params, node, header, footer, locale }
 
   // if a page has isIndex set to false, it should not be rendered
   // posts does not have this field, so they should pass
-  if (node?.isIndex === false) {
+  if (effectiveNode?.isIndex === false) {
     return null;
   }
 
+  const shouldRenderFilterHero =
+    effectiveNode?.pageType === 'filter' && filterPages.length > 0 && activeFilterPage;
+
+  const basePath = router.asPath.split('?')[0];
+
   return (
     <>
-      <Seo node={node} />
+      <Seo node={effectiveNode} />
       <Header {...header} />
-      <IndexPage node={node} />
+      {shouldRenderFilterHero && (
+        <HeroWithSubpagesBlock
+          hero={effectiveNode.heroWithSubpages}
+          tabs={filterPages}
+          activeFilterPage={activeFilterPage}
+          activeSlug={activeFilterPage?.slug}
+          basePath={basePath}
+        />
+      )}
+      <IndexPage node={effectiveNode} />
       {/*     <Footer
         footer={footer}
         showFooter={node?.node?.showFooter as boolean}

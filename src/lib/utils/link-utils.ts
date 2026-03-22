@@ -1,9 +1,11 @@
 import { CtaLinkType } from '@lib/types/types';
 
 type LinkProps = {
+  _type?: string;
   slugParent?: string;
   slug: string;
   language?: string;
+  filterParentPage?: CtaLinkType;
 };
 
 export const buildFullSlugPath = (
@@ -78,6 +80,15 @@ export function sanitizeURL(url: string) {
 }
 
 export function extractLinkOrSlug(ctaLink: LinkProps | CtaLinkType, excludeLanguage?: boolean) {
+  if (ctaLink?._type === 'filterPage' && ctaLink?.slug) {
+    if (ctaLink.filterParentPage) {
+      const parentPath = buildFullSlugPath(ctaLink.filterParentPage, !excludeLanguage);
+      return `${sanitizeURL(parentPath)}?page=${ctaLink.slug}`;
+    }
+
+    return `?page=${ctaLink.slug}`;
+  }
+
   const ctaLinkObject = {
     slugParent: ctaLink?.slugParent,
     slug: ctaLink?.slug,

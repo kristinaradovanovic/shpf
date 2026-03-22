@@ -198,7 +198,10 @@ export const settingsStructure = (typeDef: DocumentDefinition): StructureResolve
                                 .title(`${language.title} Pages`)
                                 .filter(groq`_type == $type && language == $language`)
                                 .apiVersion('2023-06-21')
-                                .params({ type: 'page', language: language.id }),
+                                .params({ type: 'page', language: language.id })
+                                .initialValueTemplates([
+                                  S.initialValueTemplateItem(`page-${language.id}`),
+                                ]),
                             ),
                           S.listItem()
                             .title('Page Structure')

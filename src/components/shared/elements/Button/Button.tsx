@@ -19,6 +19,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     iconRight = false,
     className,
     isDisabled = false,
+    isActive = false,
     ...otherProps
   },
   ref,
@@ -35,6 +36,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
         buttonStyle({
           variant,
           isDisabled,
+          isActive,
         }),
       )}
       {...otherProps}

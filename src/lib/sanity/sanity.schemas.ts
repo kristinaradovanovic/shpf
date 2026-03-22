@@ -39,6 +39,8 @@ import PartnersCtaBlockSchema from '@/schemas/blocks/PartnersCtaBlock/PartnersCt
 import highlightCardSchema from '@/schemas/highlightCard/highlightCard.schema';
 import MembershipCtaBlockSchema from '@/schemas/blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
 import headerCtaButtonItemSchema from '@schemas/headerCtaButtonItem/headerCtaButtonItem.schema';
+import filterPageSchema from '@schemas/filterPage/filterPage.schema';
+import HeroWithSubpagesBlockSchema from '@schemas/blocks/HeroWithSubpagesBlock/HeroWithSubpagesBlock.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -55,6 +57,7 @@ export const schemas = [
   contactDetailsSchema,
   newsLetterSchema,
   pageSchema,
+  filterPageSchema,
   nodeSchema,
   redirectSchema,
   externalLinkSchema,
@@ -82,6 +85,7 @@ export const schemas = [
 
   // ------------BLOCKS------------------
   HomeHeroBlockSchema,
+  HeroWithSubpagesBlockSchema,
   SplitContentWithCtaBlockSchema,
   MembersCtaBlockSchema,
   PartnersCtaBlockSchema,
