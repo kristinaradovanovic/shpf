@@ -13,6 +13,7 @@ import HomeHeroBlockSchema from '../blocks/HomeHeroBlock/HomeHeroBlock.schema';
 import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
 import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
+import MembershipCtaBlockSchema from '../blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
 
 export const schemaName = 'page';
 export const schemaTitle = 'Page';
@@ -121,6 +122,7 @@ export default defineType({
         { type: SplitContentWithCtaBlockSchema.name },
         { type: MembersCtaBlockSchema.name },
         { type: PartnersCtaBlockSchema.name },
+        { type: MembershipCtaBlockSchema.name },
       ],
       description: 'The modular blocks that make up this page.',
       hidden: ({ parent }) => !parent?.isIndex,

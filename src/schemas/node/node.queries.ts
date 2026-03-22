@@ -6,6 +6,7 @@ import { HomeHeroBlockQuery } from '../blocks/HomeHeroBlock/HomeHeroBlock.querie
 import { SplitContentWithCtaBlockQuery } from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.queries';
 import { MembersCtaBlockQuery } from '../blocks/MembersCtaBlock/MembersCtaBlock.queries';
 import { PartnersCtaBlockQuery } from '../blocks/PartnersCtaBlock/PartnersCtaBlock.queries';
+import { MembershipCtaBlockQuery } from '../blocks/MembershipCtaBlock/MembershipCtaBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
@@ -14,6 +15,7 @@ const blockQueries: any = [
   SplitContentWithCtaBlockQuery,
   MembersCtaBlockQuery,
   PartnersCtaBlockQuery,
+  MembershipCtaBlockQuery,
 ];
 
 const blockFields = groq`
