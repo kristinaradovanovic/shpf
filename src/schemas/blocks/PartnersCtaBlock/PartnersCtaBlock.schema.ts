@@ -29,11 +29,11 @@ export default defineType({
       type: 'text',
       validation: (rule) => rule.required(),
     }),
-    /*  defineField({
+    defineField({
       name: 'ctaButton',
       title: 'CTA Button',
       type: 'ctaButtonItem',
-    }), */
+    }),
   ],
   preview: {
     select: {

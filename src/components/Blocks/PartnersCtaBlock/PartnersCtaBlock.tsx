@@ -13,6 +13,7 @@ import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import {
+  buttonWrapperStyle,
   descriptionStyle,
   headingItemStyle,
   headlineWrapperStyle,
@@ -26,12 +27,14 @@ import {
 } from './PartnersCtaBlock.css';
 import { CustomHeading } from '@/components/shared/ui/CustomHeading/CustomHeading';
 import { h2 } from '@/lib/styles/fonts/typography.css';
+import Button from '@/components/shared/elements/Button/Button';
 
 const PartnersCtaBlock = ({
   sectionTagline,
   title,
   description,
   partners,
+  ctaButton,
 }: PartnersCtaBlockSchemaType) => {
   const autoplayResumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -115,6 +118,16 @@ const PartnersCtaBlock = ({
               );
             })}
           </Swiper>
+        </GridItem>
+
+        <GridItem style={{ gridColumn: 'span 12', paddingBlockStart: '20px' }}>
+          <div className={buttonWrapperStyle}>
+            <Button
+              ctaButton={ctaButton}
+              variant="navyOutlined"
+              iconRight
+            />
+          </div>
         </GridItem>
       </Grid>
     </Section>
