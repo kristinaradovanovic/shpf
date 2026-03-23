@@ -63,12 +63,14 @@ export type CtaLinkParentType = {
 };
 
 export type CtaLinkType = {
+  _type?: string;
   _id: string;
   title: string;
   language?: string;
   slug: string;
   isRoot?: boolean;
   slugParent: CtaLinkParentType;
+  filterParentPage?: CtaLinkType;
   isIndex?: boolean;
   _updatedAt: string;
   _createdAt: string;

@@ -114,6 +114,13 @@ export const buttonStyle = recipe({
         pointerEvents: 'none',
       },
     },
+    isActive: {
+      true: {
+        backgroundColor: colors.white,
+        color: colors.navy700,
+        borderColor: colors.white,
+      },
+    },
   },
 });
 

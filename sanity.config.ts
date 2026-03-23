@@ -20,6 +20,10 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash';
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Sanity Studio';
 const subtitle = 'Content Studio';
 const LOCALIZED_SCHEMAS = ['page', 'header', 'footer'];
+const CONTENT_LANGUAGES = [
+  { id: 'sv', title: 'Swedish' },
+  { id: 'en', title: 'English' },
+];
 
 export default defineConfig({
   basePath: '/studio',
@@ -39,6 +43,16 @@ export default defineConfig({
     templates: (prev) => {
       // Construct custom initial value templates for localized schemas
       const customInitialValueTemplates = [
+        ...CONTENT_LANGUAGES.map((language) => {
+          return {
+            id: `page-${language.id}`,
+            title: `Page - ${language.title}`,
+            schemaType: 'page',
+            value: {
+              language: language.id,
+            },
+          };
+        }),
         ...pageStructureChildPages.map((template) => {
           return {
             id: template.initialValueTemplate,
@@ -68,8 +82,8 @@ export default defineConfig({
         }),
       ];
 
-      // Remove the defaults so we do not have duplicate "create" buttons
-      const filteredPrev = prev.filter((template) => !LOCALIZED_SCHEMAS.includes(template.id));
+      // Keep default templates, and add language-aware templates for direct page creation.
+      const filteredPrev = prev;
 
       return [...filteredPrev, ...customInitialValueTemplates];
     },

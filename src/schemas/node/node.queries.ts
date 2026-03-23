@@ -40,6 +40,53 @@ const blockFields = groq`
     }
 `;
 
+const filterPageModulesProjection = groq`
+    modules[] {
+        ...,
+        ${blockQueries.join(',')}
+    }
+`;
+
+const filterPageFields = groq`
+    "heroWithSubpages": heroWithSubpages {
+        ...
+    },
+    "filterPages": filterPages[]-> {
+        _id,
+        title,
+        "slug": slug.current,
+        tabLabel,
+        image {
+            ${fileAssetFields}
+        },
+        ${filterPageModulesProjection},
+        seo {
+            ...,
+            "metaKeywords": metaKeywords[]->name,
+            ogImage {
+                ${fileAssetFields}
+            }
+        }
+    },
+    "defaultFilterPage": defaultFilterPage-> {
+        _id,
+        title,
+        "slug": slug.current,
+        tabLabel,
+        image {
+            ${fileAssetFields}
+        },
+        ${filterPageModulesProjection},
+        seo {
+            ...,
+            "metaKeywords": metaKeywords[]->name,
+            ogImage {
+                ${fileAssetFields}
+            }
+        }
+    }
+`;
+
 export const slugField = groq`
     "slug": slug.current,
     "slugParent": slugParent->node.slug.current
@@ -118,6 +165,7 @@ export const nodeSchemaFields = groq`
 
 export const nodeFullSchemaFields = groq`
     ${nodeSchemaFields},
+    ${filterPageFields},
     ${blockFields}
 `;
 

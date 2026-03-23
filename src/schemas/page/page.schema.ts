@@ -10,6 +10,7 @@ import {
 } from '@lib/types/types';
 import { getTranslationsByID, getTranslationsRefByID } from '@schemas/node/node.queries';
 import HomeHeroBlockSchema from '../blocks/HomeHeroBlock/HomeHeroBlock.schema';
+import HeroWithSubpagesBlockSchema from '../blocks/HeroWithSubpagesBlock/HeroWithSubpagesBlock.schema';
 import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
 import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
@@ -114,6 +115,79 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'pageType',
+      title: 'Page Type',
+      type: 'string',
+      initialValue: 'default',
+      options: {
+        list: [
+          { title: 'Default', value: 'default' },
+          { title: 'Filter', value: 'filter' },
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'heroWithSubpages',
+      title: 'Hero With Subpages',
+      type: HeroWithSubpagesBlockSchema.name,
+      hidden: ({ parent }) => parent?.pageType !== 'filter',
+    }),
+    defineField({
+      name: 'filterPages',
+      title: 'Filter Pages',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'filterPage' }] }],
+      hidden: ({ parent }) => parent?.pageType !== 'filter',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          const parent = context.document as { pageType?: string };
+          if (parent?.pageType !== 'filter') {
+            return true;
+          }
+
+          if (!value || value.length === 0) {
+            return 'At least one filter page is required for filter page type';
+          }
+
+          return true;
+        }),
+    }),
+    defineField({
+      name: 'defaultFilterPage',
+      title: 'Default Filter Page',
+      type: 'reference',
+      to: [{ type: 'filterPage' }],
+      hidden: ({ parent }) => parent?.pageType !== 'filter',
+      options: {
+        disableNew: true,
+      },
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          const parent = context.document as {
+            pageType?: string;
+            filterPages?: { _ref: string }[];
+          };
+
+          if (parent?.pageType !== 'filter') {
+            return true;
+          }
+
+          if (!value?._ref) {
+            return 'Default filter page is required for filter page type';
+          }
+
+          const hasReference = parent?.filterPages?.some((pageRef) => pageRef._ref === value._ref);
+
+          if (!hasReference) {
+            return 'Default filter page must be one of the selected filter pages';
+          }
+
+          return true;
+        }),
+    }),
+    defineField({
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
@@ -125,7 +199,7 @@ export default defineType({
         { type: MembershipCtaBlockSchema.name },
       ],
       description: 'The modular blocks that make up this page.',
-      hidden: ({ parent }) => !parent?.isIndex,
+      hidden: ({ parent }) => !parent?.isIndex || parent?.pageType === 'filter',
       options: {
         insertMenu: {
           views: [

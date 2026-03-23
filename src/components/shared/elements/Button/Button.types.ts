@@ -6,6 +6,7 @@ export type ButtonProps = PropsWithChildren & {
   text?: string;
   href?: string;
   isDisabled?: boolean;
+  isActive?: boolean;
   buttonType?: 'button' | 'submit' | 'reset';
   variant?: 'golden' | 'whiteOutlined' | 'navyOutlined' | 'navy' | 'headerPremium';
   iconRight?: boolean;

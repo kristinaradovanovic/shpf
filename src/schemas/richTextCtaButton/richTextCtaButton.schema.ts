@@ -72,7 +72,12 @@ export default defineType({
       name: 'ctaPage',
       title: 'CTA Page',
       type: 'reference',
-      to: [{ type: 'page' }],
+      to: [{ type: 'page' }, { type: 'filterPage' }],
+      options: {
+        disableNew: true,
+        filter:
+          '!(_id in path("drafts.**")) && ((_type == "page" && defined(node.slug.current)) || (_type == "filterPage" && defined(slug.current) && count(*[_type == "page" && references(^._id)]) > 0))',
+      },
       description: 'The page to navigate to when the call-to-action button is clicked.',
       hidden: ({ parent }) => (parent as RichTextCTAButtonSchemaType)?.ctaType !== 'page',
       validation: (rule) =>
