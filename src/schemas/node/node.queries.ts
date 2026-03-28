@@ -9,6 +9,7 @@ import { PartnersCtaBlockQuery } from '../blocks/PartnersCtaBlock/PartnersCtaBlo
 import { MembershipCtaBlockQuery } from '../blocks/MembershipCtaBlock/MembershipCtaBlock.queries';
 import { RichTextBlockQuery } from '../blocks/RichTextBlock/RichTextBlock.queries';
 import { SplitContentBlockQuery } from '../blocks/SplitContentBlock/SplitContentBlock.queries';
+import { ImageBlockQuery } from '../blocks/ImageBlock/ImageBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
@@ -20,6 +21,7 @@ const blockQueries: any = [
   MembershipCtaBlockQuery,
   RichTextBlockQuery,
   SplitContentBlockQuery,
+  ImageBlockQuery,
 ];
 
 const blockFields = groq`

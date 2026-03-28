@@ -43,6 +43,7 @@ import filterPageSchema from '@schemas/filterPage/filterPage.schema';
 import HeroWithSubpagesBlockSchema from '@schemas/blocks/HeroWithSubpagesBlock/HeroWithSubpagesBlock.schema';
 import RichTextBlockSchema from '@/schemas/blocks/RichTextBlock/RichTextBlock.schema';
 import SplitContentBlockSchema from '@/schemas/blocks/SplitContentBlock/SplitContentBlock.schema';
+import ImageBlockSchema from '@/schemas/blocks/ImageBlock/ImageBlock.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -89,6 +90,7 @@ export const schemas = [
   HomeHeroBlockSchema,
   HeroWithSubpagesBlockSchema,
   RichTextBlockSchema,
+  ImageBlockSchema,
   SplitContentWithCtaBlockSchema,
   MembersCtaBlockSchema,
   PartnersCtaBlockSchema,
