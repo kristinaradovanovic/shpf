@@ -144,7 +144,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     },
     ...(process.env.NODE_ENV !== 'production'
       ? {
-          revalidate: 60, // Revalidate every 60 seconds in development
+          revalidate: 1, // Revalidate quickly in development to reflect CMS edits
         }
       : {}),
   };

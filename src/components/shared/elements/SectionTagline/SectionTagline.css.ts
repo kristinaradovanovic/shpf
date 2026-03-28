@@ -1,22 +1,33 @@
 import { labelText } from '@lib/styles/fonts/typography.css';
 import { colors } from '@lib/styles/variables/colors';
 import { spacings } from '@lib/styles/variables/spacings';
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
-export const sectionTaglineContainer = style([
-  {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-]);
+const containerBase = style({
+  display: 'flex',
+  alignItems: 'center',
+});
 
-export const sectionTaglineText = style([
+export const sectionTaglineContainer = styleVariants({
+  left: [
+    containerBase,
+    {
+      justifyContent: 'flex-start',
+    },
+  ],
+  center: [
+    containerBase,
+    {
+      justifyContent: 'center',
+    },
+  ],
+});
+
+const textBase = style([
   labelText,
   {
     color: colors.gold500,
     textTransform: 'uppercase',
-    textAlign: 'center',
     backgroundColor: 'transparent',
     borderRadius: '100px',
     border: `1px solid ${colors.gold500}`,
@@ -25,3 +36,18 @@ export const sectionTaglineText = style([
     margin: 0,
   },
 ]);
+
+export const sectionTaglineText = styleVariants({
+  left: [
+    textBase,
+    {
+      textAlign: 'left',
+    },
+  ],
+  center: [
+    textBase,
+    {
+      textAlign: 'center',
+    },
+  ],
+});

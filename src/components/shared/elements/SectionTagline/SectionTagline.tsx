@@ -4,7 +4,7 @@ import {
 } from '@components/shared/elements/SectionTagline/SectionTagline.css';
 import { SectionTaglineProps } from '@components/shared/elements/SectionTagline/SectionTagline.types';
 
-export const SectionTagline = ({ text, id }: SectionTaglineProps) => {
+export const SectionTagline = ({ text, id, alignment = 'center' }: SectionTaglineProps) => {
   const generatedId =
     id ||
     `section-${text
@@ -14,10 +14,10 @@ export const SectionTagline = ({ text, id }: SectionTaglineProps) => {
 
   return (
     <div
-      className={sectionTaglineContainer}
+      className={sectionTaglineContainer[alignment]}
       id={generatedId}
     >
-      <p className={sectionTaglineText}>{text}</p>
+      <p className={sectionTaglineText[alignment]}>{text}</p>
     </div>
   );
 };

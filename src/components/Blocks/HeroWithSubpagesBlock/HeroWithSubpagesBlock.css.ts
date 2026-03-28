@@ -5,25 +5,32 @@ import { colors } from '@lib/styles/variables/colors';
 import { spacings } from '@lib/styles/variables/spacings';
 import { style } from '@vanilla-extract/css';
 
-export const heroWithSubPagesSectionStyle = style({
-  position: 'relative',
-  overflow: 'hidden',
-  minHeight: '75vh',
-});
+export const heroWithSubPagesSectionStyle = style([
+  {
+    position: 'relative',
+    overflow: 'hidden',
+    minHeight: '50vh',
+  },
+  responsiveStyles({
+    tablet: {
+      minHeight: '30vh',
+    },
+    desktop: {
+      minHeight: '75vh',
+    },
+  }),
+]);
 
 export const heroWithSubPagesGridStyle = style([
   gridStyle({ inlinePadding: 'none' }),
   {
     position: 'relative',
-    minHeight: '75vh',
+    minHeight: '50vh',
     width: '100%',
   },
   responsiveStyles({
-    mobile: {
-      minHeight: '75vh',
-    },
     tablet: {
-      minHeight: '75vh',
+      minHeight: '30vh',
     },
     desktop: {
       minHeight: '75vh',

@@ -41,6 +41,7 @@ import MembershipCtaBlockSchema from '@/schemas/blocks/MembershipCtaBlock/Member
 import headerCtaButtonItemSchema from '@schemas/headerCtaButtonItem/headerCtaButtonItem.schema';
 import filterPageSchema from '@schemas/filterPage/filterPage.schema';
 import HeroWithSubpagesBlockSchema from '@schemas/blocks/HeroWithSubpagesBlock/HeroWithSubpagesBlock.schema';
+import SplitContentBlockSchema from '@/schemas/blocks/SplitContentBlock/SplitContentBlock.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -90,4 +91,5 @@ export const schemas = [
   MembersCtaBlockSchema,
   PartnersCtaBlockSchema,
   MembershipCtaBlockSchema,
+  SplitContentBlockSchema,
 ];
