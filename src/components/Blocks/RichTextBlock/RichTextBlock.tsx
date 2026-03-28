@@ -18,7 +18,15 @@ import {
   sectionStyle,
 } from './RichTextBlock.css';
 
-const RichTextBlock = ({ sectionTagline, title, richTextContent }: RichTextBlockSchemaType) => {
+const RichTextBlock = ({
+  sectionTagline,
+  title,
+  positioning = 'left',
+  richTextContent,
+}: RichTextBlockSchemaType) => {
+  const isCenterPositioned = positioning === 'center';
+  const textAlignment = isCenterPositioned ? 'center' : 'left';
+
   return (
     <Section className={sectionStyle}>
       <Grid className={sectionGridStyle}>
@@ -27,7 +35,7 @@ const RichTextBlock = ({ sectionTagline, title, richTextContent }: RichTextBlock
             {sectionTagline && (
               <SectionTagline
                 text={sectionTagline}
-                alignment="left"
+                alignment={textAlignment}
               />
             )}
             {title && (
@@ -36,12 +44,13 @@ const RichTextBlock = ({ sectionTagline, title, richTextContent }: RichTextBlock
                 text={title}
                 textColor="navy700"
                 className={h2}
+                style={isCenterPositioned ? { textAlign: 'center' } : undefined}
               />
             )}
           </div>
         </GridItem>
         <GridItem className={gridItemStyle}>
-          <div className={richTextStyle}>
+          <div className={richTextStyle({ alignment: positioning })}>
             <PortableText
               value={richTextContent || []}
               components={{

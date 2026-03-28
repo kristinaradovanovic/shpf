@@ -21,6 +21,19 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'positioning',
+      title: 'Block positioning',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Left', value: 'left' },
+          { title: 'Center', value: 'center' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'left',
+    }),
+    defineField({
       name: 'richTextContent',
       title: 'Rich text content',
       type: 'array',

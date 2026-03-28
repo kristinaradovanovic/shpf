@@ -11,5 +11,6 @@ export interface RichTextBlockLinkMark {
 export interface RichTextBlockSchemaType extends SchemaType {
   sectionTagline?: string;
   title?: string;
+  positioning?: 'left' | 'center';
   richTextContent: PortableTextBlock[];
 }

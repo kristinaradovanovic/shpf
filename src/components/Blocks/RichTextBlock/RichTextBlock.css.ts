@@ -3,10 +3,11 @@ import { bodyCopy, h2 } from '@/lib/styles/fonts/typography.css';
 import { colors } from '@/lib/styles/variables/colors';
 import { spacings } from '@/lib/styles/variables/spacings';
 import { globalStyle, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const sectionStyle = style([
   {
-    paddingBlock: spacings[60],
+    paddingBlock: spacings[40],
   },
 ]);
 
@@ -40,24 +41,50 @@ export const titleStyle = style([
   },
 ]);
 
-export const richTextStyle = style([
-  bodyCopy,
-  {
-    color: colors.slate500,
-    width: '100%',
-    margin: 0,
+export const richTextStyle = recipe({
+  base: [
+    bodyCopy,
+    {
+      color: colors.slate500,
+      width: '100%',
+      margin: 0,
+    },
+  ],
+  variants: {
+    alignment: {
+      left: {},
+      center: {
+        textAlign: 'center',
+      },
+    },
   },
-]);
+  defaultVariants: {
+    alignment: 'left',
+  },
+});
 
-globalStyle(`${richTextStyle} p`, {
+globalStyle(`${richTextStyle({ alignment: 'left' })} p`, {
   margin: 0,
 });
 
-globalStyle(`${richTextStyle} p + p`, {
+globalStyle(`${richTextStyle({ alignment: 'left' })} p + p`, {
   marginTop: spacings[12],
 });
 
-globalStyle(`${richTextStyle} a`, {
+globalStyle(`${richTextStyle({ alignment: 'center' })} p`, {
+  margin: 0,
+});
+
+globalStyle(`${richTextStyle({ alignment: 'center' })} p + p`, {
+  marginTop: spacings[12],
+});
+
+globalStyle(`${richTextStyle({ alignment: 'left' })} a`, {
+  color: colors.navy700,
+  textDecoration: 'underline',
+});
+
+globalStyle(`${richTextStyle({ alignment: 'center' })} a`, {
   color: colors.navy700,
   textDecoration: 'underline',
 });
