@@ -8,6 +8,7 @@ import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.
 import MembershipCtaBlockSchema from '../blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
 import RichTextBlockSchema from '../blocks/RichTextBlock/RichTextBlock.schema';
 import SplitContentBlockSchema from '../blocks/SplitContentBlock/SplitContentBlock.schema';
+import ImageBlockSchema from '../blocks/ImageBlock/ImageBlock.schema';
 
 export const schemaName = 'filterPage';
 export const schemaTitle = 'Filter Page';
@@ -81,6 +82,7 @@ export default defineType({
         { type: PartnersCtaBlockSchema.name },
         { type: MembershipCtaBlockSchema.name },
         { type: RichTextBlockSchema.name },
+        { type: ImageBlockSchema.name },
         { type: SplitContentBlockSchema.name },
       ],
       options: {

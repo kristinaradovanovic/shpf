@@ -5,6 +5,7 @@ import PartnersCtaBlock from '@/components/Blocks/PartnersCtaBlock/PartnersCtaBl
 import RichTextBlock from '@/components/Blocks/RichTextBlock/RichTextBlock';
 import SplitContentBlock from '@/components/Blocks/SplitContentBlock/SplitContentBlock';
 import SplitContentWithCtaBlock from '@/components/Blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock';
+import ImageBlock from '@/components/Blocks/ImageBlock/ImageBlock';
 import HomeHeroBlockSchema from '@/schemas/blocks/HomeHeroBlock/HomeHeroBlock.schema';
 import MembersCtaBlockSchema from '@/schemas/blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import MembershipCtaBlockSchema from '@/schemas/blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
@@ -12,6 +13,7 @@ import PartnersCtaBlockSchema from '@/schemas/blocks/PartnersCtaBlock/PartnersCt
 import RichTextBlockSchema from '@/schemas/blocks/RichTextBlock/RichTextBlock.schema';
 import SplitContentBlockSchema from '@/schemas/blocks/SplitContentBlock/SplitContentBlock.schema';
 import SplitContentWithCtaBlockSchema from '@/schemas/blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
+import ImageBlockSchema from '@/schemas/blocks/ImageBlock/ImageBlock.schema';
 
 export const blockComponentMapping = {
   [HomeHeroBlockSchema.name]: HomeHeroBlock,
@@ -20,5 +22,6 @@ export const blockComponentMapping = {
   [PartnersCtaBlockSchema.name]: PartnersCtaBlock,
   [MembershipCtaBlockSchema.name]: MembershipCtaBlock,
   [RichTextBlockSchema.name]: RichTextBlock,
+  [ImageBlockSchema.name]: ImageBlock,
   [SplitContentBlockSchema.name]: SplitContentBlock,
 };
