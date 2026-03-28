@@ -103,22 +103,6 @@ export default defineType({
             ],
           },
         ],
-
-        // annotations: [
-        //   {
-        //     name: 'quoteAnnotation',
-        //     title: 'Quote',
-        //     type: 'object',
-        //     fields: [
-        //       {
-        //         name: 'quoteText',
-        //         title: 'Quote text',
-        //         type: 'text',
-        //       },
-        //       { name: 'quoteAuthor', title: 'Quote author', type: 'string' },
-        //     ],
-        //   },
-        // ],
       },
     },
     defineArrayMember({

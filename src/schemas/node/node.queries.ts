@@ -7,6 +7,7 @@ import { SplitContentWithCtaBlockQuery } from '../blocks/SplitContentWithCtaBloc
 import { MembersCtaBlockQuery } from '../blocks/MembersCtaBlock/MembersCtaBlock.queries';
 import { PartnersCtaBlockQuery } from '../blocks/PartnersCtaBlock/PartnersCtaBlock.queries';
 import { MembershipCtaBlockQuery } from '../blocks/MembershipCtaBlock/MembershipCtaBlock.queries';
+import { RichTextBlockQuery } from '../blocks/RichTextBlock/RichTextBlock.queries';
 import { SplitContentBlockQuery } from '../blocks/SplitContentBlock/SplitContentBlock.queries';
 // do not use barrel file, queries become undefined
 
@@ -17,6 +18,7 @@ const blockQueries: any = [
   MembersCtaBlockQuery,
   PartnersCtaBlockQuery,
   MembershipCtaBlockQuery,
+  RichTextBlockQuery,
   SplitContentBlockQuery,
 ];
 

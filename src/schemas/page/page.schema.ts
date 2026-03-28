@@ -15,6 +15,7 @@ import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/S
 import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
 import MembershipCtaBlockSchema from '../blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
+import RichTextBlockSchema from '../blocks/RichTextBlock/RichTextBlock.schema';
 import SplitContentBlockSchema from '../blocks/SplitContentBlock/SplitContentBlock.schema';
 
 export const schemaName = 'page';
@@ -198,6 +199,7 @@ export default defineType({
         { type: MembersCtaBlockSchema.name },
         { type: PartnersCtaBlockSchema.name },
         { type: MembershipCtaBlockSchema.name },
+        { type: RichTextBlockSchema.name },
         { type: SplitContentBlockSchema.name },
       ],
       description: 'The modular blocks that make up this page.',
