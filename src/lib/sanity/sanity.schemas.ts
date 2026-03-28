@@ -41,6 +41,7 @@ import MembershipCtaBlockSchema from '@/schemas/blocks/MembershipCtaBlock/Member
 import headerCtaButtonItemSchema from '@schemas/headerCtaButtonItem/headerCtaButtonItem.schema';
 import filterPageSchema from '@schemas/filterPage/filterPage.schema';
 import HeroWithSubpagesBlockSchema from '@schemas/blocks/HeroWithSubpagesBlock/HeroWithSubpagesBlock.schema';
+import RichTextBlockSchema from '@/schemas/blocks/RichTextBlock/RichTextBlock.schema';
 import SplitContentBlockSchema from '@/schemas/blocks/SplitContentBlock/SplitContentBlock.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
@@ -87,6 +88,7 @@ export const schemas = [
   // ------------BLOCKS------------------
   HomeHeroBlockSchema,
   HeroWithSubpagesBlockSchema,
+  RichTextBlockSchema,
   SplitContentWithCtaBlockSchema,
   MembersCtaBlockSchema,
   PartnersCtaBlockSchema,
