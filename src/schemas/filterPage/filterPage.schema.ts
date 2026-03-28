@@ -6,6 +6,7 @@ import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/S
 import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
 import MembershipCtaBlockSchema from '../blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
+import SplitContentBlockSchema from '../blocks/SplitContentBlock/SplitContentBlock.schema';
 
 export const schemaName = 'filterPage';
 export const schemaTitle = 'Filter Page';
@@ -78,6 +79,7 @@ export default defineType({
         { type: MembersCtaBlockSchema.name },
         { type: PartnersCtaBlockSchema.name },
         { type: MembershipCtaBlockSchema.name },
+        { type: SplitContentBlockSchema.name },
       ],
       options: {
         insertMenu: {

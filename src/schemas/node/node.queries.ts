@@ -7,6 +7,7 @@ import { SplitContentWithCtaBlockQuery } from '../blocks/SplitContentWithCtaBloc
 import { MembersCtaBlockQuery } from '../blocks/MembersCtaBlock/MembersCtaBlock.queries';
 import { PartnersCtaBlockQuery } from '../blocks/PartnersCtaBlock/PartnersCtaBlock.queries';
 import { MembershipCtaBlockQuery } from '../blocks/MembershipCtaBlock/MembershipCtaBlock.queries';
+import { SplitContentBlockQuery } from '../blocks/SplitContentBlock/SplitContentBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
@@ -16,6 +17,7 @@ const blockQueries: any = [
   MembersCtaBlockQuery,
   PartnersCtaBlockQuery,
   MembershipCtaBlockQuery,
+  SplitContentBlockQuery,
 ];
 
 const blockFields = groq`
@@ -41,7 +43,7 @@ const blockFields = groq`
 `;
 
 const filterPageModulesProjection = groq`
-    modules[] {
+    "modules": coalesce(modules, blocks, [])[] {
         ...,
         ${blockQueries.join(',')}
     }
@@ -53,37 +55,65 @@ const filterPageFields = groq`
     },
     "filterPages": filterPages[]-> {
         _id,
-        title,
-        "slug": slug.current,
-        tabLabel,
+        _type,
+        "title": coalesce(title, node.title),
+        "slug": coalesce(slug.current, node.slug.current),
+        "tabLabel": coalesce(tabLabel, node.title),
         image {
             ${fileAssetFields}
         },
         ${filterPageModulesProjection},
-        seo {
-            ...,
-            "metaKeywords": metaKeywords[]->name,
-            ogImage {
-                ${fileAssetFields}
-            }
-        }
+        "seo": select(
+          _type == "filterPage" => seo {
+              ...,
+              "metaKeywords": metaKeywords[]->name,
+              ogImage {
+                  ${fileAssetFields}
+              }
+          },
+          _type == "page" => {
+              "includeInSearchEngines": node.includeInSearchEngines,
+              "metaTitle": node.metaTitle,
+              "metaDescription": node.metaDescription,
+              "metaKeywords": node.metaKeywords[]->name,
+              "ogImage": node.ogImage {
+                  ${fileAssetFields}
+              },
+              "ogImageAlt": node.ogImageAlt
+          },
+          null
+        )
     },
     "defaultFilterPage": defaultFilterPage-> {
         _id,
-        title,
-        "slug": slug.current,
-        tabLabel,
+        _type,
+        "title": coalesce(title, node.title),
+        "slug": coalesce(slug.current, node.slug.current),
+        "tabLabel": coalesce(tabLabel, node.title),
         image {
             ${fileAssetFields}
         },
         ${filterPageModulesProjection},
-        seo {
-            ...,
-            "metaKeywords": metaKeywords[]->name,
-            ogImage {
-                ${fileAssetFields}
-            }
-        }
+        "seo": select(
+          _type == "filterPage" => seo {
+              ...,
+              "metaKeywords": metaKeywords[]->name,
+              ogImage {
+                  ${fileAssetFields}
+              }
+          },
+          _type == "page" => {
+              "includeInSearchEngines": node.includeInSearchEngines,
+              "metaTitle": node.metaTitle,
+              "metaDescription": node.metaDescription,
+              "metaKeywords": node.metaKeywords[]->name,
+              "ogImage": node.ogImage {
+                  ${fileAssetFields}
+              },
+              "ogImageAlt": node.ogImageAlt
+          },
+          null
+        )
     }
 `;
 

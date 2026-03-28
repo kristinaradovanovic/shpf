@@ -233,6 +233,27 @@ export const settingsStructure = (typeDef: DocumentDefinition): StructureResolve
                 ),
               ),
           ),
+        S.divider().title('Subpages'),
+        S.listItem()
+          .title('Subpages')
+          .icon(FolderIcon as any)
+          .child(
+            S.list()
+              .title('Subpages')
+              .items(
+                CONTENT_LANGUAGES.map((language) =>
+                  S.listItem()
+                    .title(language.title)
+                    .icon(FolderIcon as any)
+                    .child(
+                      S.documentList()
+                        .title(`${language.title} Subpages`)
+                        .filter(groq`_type == "filterPage"`)
+                        .apiVersion('2023-06-21'),
+                    ),
+                ),
+              ),
+          ),
         S.divider().title('Layout Components'),
         S.listItem()
           .title('Layout Components')

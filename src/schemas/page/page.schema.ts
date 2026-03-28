@@ -15,6 +15,7 @@ import SplitContentWithCtaBlockSchema from '../blocks/SplitContentWithCtaBlock/S
 import MembersCtaBlockSchema from '../blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import PartnersCtaBlockSchema from '../blocks/PartnersCtaBlock/PartnersCtaBlock.schema';
 import MembershipCtaBlockSchema from '../blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
+import SplitContentBlockSchema from '../blocks/SplitContentBlock/SplitContentBlock.schema';
 
 export const schemaName = 'page';
 export const schemaTitle = 'Page';
@@ -138,7 +139,7 @@ export default defineType({
       name: 'filterPages',
       title: 'Filter Pages',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'filterPage' }] }],
+      of: [{ type: 'reference', to: [{ type: 'filterPage' }, { type: 'page' }] }],
       hidden: ({ parent }) => parent?.pageType !== 'filter',
       validation: (rule) =>
         rule.custom((value, context) => {
@@ -158,7 +159,7 @@ export default defineType({
       name: 'defaultFilterPage',
       title: 'Default Filter Page',
       type: 'reference',
-      to: [{ type: 'filterPage' }],
+      to: [{ type: 'filterPage' }, { type: 'page' }],
       hidden: ({ parent }) => parent?.pageType !== 'filter',
       options: {
         disableNew: true,
@@ -197,6 +198,7 @@ export default defineType({
         { type: MembersCtaBlockSchema.name },
         { type: PartnersCtaBlockSchema.name },
         { type: MembershipCtaBlockSchema.name },
+        { type: SplitContentBlockSchema.name },
       ],
       description: 'The modular blocks that make up this page.',
       hidden: ({ parent }) => !parent?.isIndex || parent?.pageType === 'filter',
