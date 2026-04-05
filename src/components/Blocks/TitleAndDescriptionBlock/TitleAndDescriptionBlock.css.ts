@@ -1,4 +1,5 @@
 import { gridStyle } from '@/components/shared/layout/Grid/Grid.css';
+import { responsiveStyles } from '@/lib/styles/csshelpers';
 import { h2, sectionDescription } from '@/lib/styles/fonts/typography.css';
 import { colors } from '@/lib/styles/variables/colors';
 import { spacings } from '@/lib/styles/variables/spacings';
@@ -6,8 +7,13 @@ import { style } from '@vanilla-extract/css';
 
 export const sectionStyle = style([
   {
-    paddingBlock: spacings[80],
+    paddingBlock: spacings[40],
   },
+  responsiveStyles({
+    tablet: {
+      paddingBlock: spacings[60],
+    },
+  }),
 ]);
 
 export const sectionGridStyle = style([
