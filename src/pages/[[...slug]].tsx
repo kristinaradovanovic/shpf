@@ -13,6 +13,7 @@ import type { GetStaticProps } from 'next';
 import Header from '@/components/pageStructure/Header/Header';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import Footer from '@/components/pageStructure/Footer/Footer';
 interface PageProps extends SharedPageProps {
   header: HeaderSchemaType;
   footer: FooterSchemaType;
@@ -87,11 +88,10 @@ export default function Page({ draftMode, params, node, header, footer, locale }
         />
       )}
       <IndexPage node={effectiveNode} />
-      {/*     <Footer
+      <Footer
         footer={footer}
         showFooter={node?.node?.showFooter as boolean}
-        settings={settings}
-      /> */}
+      />
     </>
   );
 }

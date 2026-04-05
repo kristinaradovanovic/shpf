@@ -1,4 +1,3 @@
-import { BackgroundColorTypes } from '@lib/styles/variables/colors';
 import type {
   ArrayMemberType,
   ImageWithAltType,
@@ -13,11 +12,11 @@ import { NavSocialSchemaType } from '@schemas/navSocial/navSocial.types';
 export interface FooterSchemaType extends SchemaType, LocalizedSchemaType {
   contactDetails?: ContactDetailsSchemaType;
   navSocials?: NavSocialSchemaType;
+  footerItemsTitle?: string;
   footerItems?: (FooterItemSchemaType & ArrayMemberType)[];
   copyright?: string;
   policies?: NavItemSchemaType;
   title?: string;
   description?: string;
   image?: ImageWithAltType;
-  backgroundColor: BackgroundColorTypes;
 }

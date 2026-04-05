@@ -24,13 +24,6 @@ export default defineType({
       placeholder: 'Frågor & svar',
     }),
     defineField({
-      name: 'whistleblower',
-      title: 'Whistleblower Link',
-      type: 'externalLink',
-      description: 'Länk till visselblåsarfunktion',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'email',
       title: 'Email',
       type: 'string',

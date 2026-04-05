@@ -14,27 +14,18 @@ export default defineType({
       title: 'Page',
       type: 'reference',
       to: [{ type: 'page' }],
-      description: 'The page this header item links to',
+      description: 'The page this footer item links to',
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'sublinks',
-      title: 'Sublinks',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'page' }] }],
-      description: 'The sublinks pages of this page',
     }),
   ],
   preview: {
     select: {
       title: 'page.node.title',
-      sublinks: 'sublinks',
     },
     prepare(selection) {
-      const { title, sublinks } = selection;
+      const { title } = selection;
       return {
         title: title,
-        subtitle: sublinks ? `Sublinks: ${sublinks.length}` : '',
       };
     },
   },

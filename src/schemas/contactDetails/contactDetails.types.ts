@@ -1,5 +1,4 @@
 import type { SchemaType } from '@lib/types/types';
-import { ExternalLinkSchemaType } from '@schemas/externalLink/externalLink.types';
 
 export interface ContactDetailsSchemaType extends SchemaType {
   contactTitle?: string;
@@ -10,5 +9,4 @@ export interface ContactDetailsSchemaType extends SchemaType {
   addressTitle?: string;
   address?: string;
   postal?: string;
-  whistleblower?: ExternalLinkSchemaType;
 }
