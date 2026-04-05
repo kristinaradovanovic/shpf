@@ -9,6 +9,7 @@ import MembershipCtaBlockSchema from '../blocks/MembershipCtaBlock/MembershipCta
 import RichTextBlockSchema from '../blocks/RichTextBlock/RichTextBlock.schema';
 import SplitContentBlockSchema from '../blocks/SplitContentBlock/SplitContentBlock.schema';
 import ImageBlockSchema from '../blocks/ImageBlock/ImageBlock.schema';
+import TitleAndDescriptionBlockSchema from '../blocks/TitleAndDescriptionBlock/TitleAndDescriptionBlock.schema';
 
 export const schemaName = 'filterPage';
 export const schemaTitle = 'Filter Page';
@@ -84,6 +85,7 @@ export default defineType({
         { type: RichTextBlockSchema.name },
         { type: ImageBlockSchema.name },
         { type: SplitContentBlockSchema.name },
+        { type: TitleAndDescriptionBlockSchema.name },
       ],
       options: {
         insertMenu: {

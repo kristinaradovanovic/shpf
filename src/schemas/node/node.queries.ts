@@ -10,6 +10,7 @@ import { MembershipCtaBlockQuery } from '../blocks/MembershipCtaBlock/Membership
 import { RichTextBlockQuery } from '../blocks/RichTextBlock/RichTextBlock.queries';
 import { SplitContentBlockQuery } from '../blocks/SplitContentBlock/SplitContentBlock.queries';
 import { ImageBlockQuery } from '../blocks/ImageBlock/ImageBlock.queries';
+import { TitleAndDescriptionBlockQuery } from '../blocks/TitleAndDescriptionBlock/TitleAndDescriptionBlock.queries';
 // do not use barrel file, queries become undefined
 
 // add each field query from each block to this array
@@ -22,6 +23,7 @@ const blockQueries: any = [
   RichTextBlockQuery,
   SplitContentBlockQuery,
   ImageBlockQuery,
+  TitleAndDescriptionBlockQuery,
 ];
 
 const blockFields = groq`
