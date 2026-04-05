@@ -7,6 +7,7 @@ import SplitContentBlock from '@/components/Blocks/SplitContentBlock/SplitConten
 import SplitContentWithCtaBlock from '@/components/Blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock';
 import ImageBlock from '@/components/Blocks/ImageBlock/ImageBlock';
 import TitleAndDescriptionBlock from '@/components/Blocks/TitleAndDescriptionBlock/TitleAndDescriptionBlock';
+import PillarsGridBlock from '@/components/Blocks/PillarsGridBlock/PillarsGridBlock';
 import HomeHeroBlockSchema from '@/schemas/blocks/HomeHeroBlock/HomeHeroBlock.schema';
 import MembersCtaBlockSchema from '@/schemas/blocks/MembersCtaBlock/MembersCtaBlock.schema';
 import MembershipCtaBlockSchema from '@/schemas/blocks/MembershipCtaBlock/MembershipCtaBlock.schema';
@@ -16,6 +17,7 @@ import SplitContentBlockSchema from '@/schemas/blocks/SplitContentBlock/SplitCon
 import SplitContentWithCtaBlockSchema from '@/schemas/blocks/SplitContentWithCtaBlock/SplitContentWithCtaBlock.schema';
 import ImageBlockSchema from '@/schemas/blocks/ImageBlock/ImageBlock.schema';
 import TitleAndDescriptionBlockSchema from '@/schemas/blocks/TitleAndDescriptionBlock/TitleAndDescriptionBlock.schema';
+import PillarsGridBlockSchema from '@/schemas/blocks/PillarsGridBlock/PillarsGridBlock.schema';
 
 export const blockComponentMapping = {
   [HomeHeroBlockSchema.name]: HomeHeroBlock,
@@ -27,4 +29,5 @@ export const blockComponentMapping = {
   [ImageBlockSchema.name]: ImageBlock,
   [SplitContentBlockSchema.name]: SplitContentBlock,
   [TitleAndDescriptionBlockSchema.name]: TitleAndDescriptionBlock,
+  [PillarsGridBlockSchema.name]: PillarsGridBlock,
 };

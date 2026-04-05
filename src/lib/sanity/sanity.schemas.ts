@@ -45,6 +45,7 @@ import RichTextBlockSchema from '@/schemas/blocks/RichTextBlock/RichTextBlock.sc
 import SplitContentBlockSchema from '@/schemas/blocks/SplitContentBlock/SplitContentBlock.schema';
 import ImageBlockSchema from '@/schemas/blocks/ImageBlock/ImageBlock.schema';
 import TitleAndDescriptionBlockSchema from '@/schemas/blocks/TitleAndDescriptionBlock/TitleAndDescriptionBlock.schema';
+import PillarsGridBlockSchema from '@/schemas/blocks/PillarsGridBlock/PillarsGridBlock.schema';
 
 // Schemas added here, is so Sanity recongizes the schema
 // The order of the array items is reflected in the order of the schemas in the Sanity Studio
@@ -98,4 +99,5 @@ export const schemas = [
   MembershipCtaBlockSchema,
   SplitContentBlockSchema,
   TitleAndDescriptionBlockSchema,
+  PillarsGridBlockSchema,
 ];
