@@ -1,12 +1,19 @@
 import { gridStyle } from '@/components/shared/layout/Grid/Grid.css';
+import { responsiveStyles } from '@/lib/styles/csshelpers';
 import { spacings } from '@/lib/styles/variables/spacings';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const sectionStyle = style([
   {
-    paddingBlock: spacings[40],
+    paddingBlockStart: spacings[10],
+    paddingBlockEnd: 0,
   },
+  responsiveStyles({
+    tablet: {
+      paddingBlock: spacings[40],
+    },
+  }),
 ]);
 
 export const sectionGridStyle = style([
@@ -23,9 +30,16 @@ export const gridItemStyle = recipe({
   },
   variants: {
     span: {
-      'span-6': {
-        gridColumn: 'span 6',
-      },
+      'span-6': [
+        {
+          gridColumn: 'span 12',
+        },
+        responsiveStyles({
+          tablet: {
+            gridColumn: 'span 6',
+          },
+        }),
+      ],
       'span-12': {
         gridColumn: 'span 12',
       },
