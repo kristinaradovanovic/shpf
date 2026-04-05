@@ -5,8 +5,5 @@ export const footerItemSchemaFields = groq`
     ...,
     page->{
         ${ctaLinkFields}
-    },
-    sublinks[]->{
-        ${ctaLinkFields}
-    }    
+    },  
 `;

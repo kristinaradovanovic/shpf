@@ -1,5 +1,4 @@
 import { imageField } from '@lib/fields/image-field/image-field';
-import { backgroundColors } from '@lib/styles/variables/colors';
 import { ThListIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
@@ -82,16 +81,6 @@ export default defineType({
       }),
     ),
     defineField({
-      name: 'backgroundColor',
-      title: 'Background Color',
-      type: 'string',
-      options: {
-        list: Object.keys(backgroundColors),
-      },
-      validation: (rule) => rule.required(),
-      group: ['main'],
-    }),
-    defineField({
       name: 'contactDetails',
       title: 'Contact Details',
       type: 'contactDetails',
@@ -103,6 +92,13 @@ export default defineType({
       type: 'navSocial',
       description: 'The social links in the footer',
       group: ['navSocials'],
+    }),
+    defineField({
+      name: 'footerItemsTitle',
+      title: 'Footer items section title',
+      type: 'string',
+      description: 'Optional heading above the footer links section, e.g. "Pages".',
+      group: ['footerItems'],
     }),
     defineField({
       name: 'footerItems',
@@ -126,11 +122,5 @@ export default defineType({
       description: 'A list of links to the privacy policy, cookie etc pages in the footer',
       group: ['legal'],
     }),
-    // defineField({
-    //   name: 'newsletter',
-    //   title: 'Newsletter',
-    //   type: 'newsletter',
-    //   group: ['newsletter'],
-    // }),
   ],
 });
