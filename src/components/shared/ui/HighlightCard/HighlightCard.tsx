@@ -29,7 +29,9 @@ const HighlightCard = ({ title, description, icon, colorVariant }: HighlightCard
         )}
       </div>
       {title && <h4 className={titleStyle}>{title}</h4>}
-      {description && <p className={descriptionStyle}>{description}</p>}
+      {description && (
+        <p className={descriptionStyle[variant] ?? descriptionStyle.White}>{description}</p>
+      )}
     </article>
   );
 };

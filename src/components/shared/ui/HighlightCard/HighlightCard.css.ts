@@ -45,12 +45,26 @@ export const titleStyle = style([
   },
 ]);
 
-export const descriptionStyle = style([
+const descriptionBaseStyle = style([
   bodyCopy,
   {
-    color: colors.slate300,
     margin: 0,
     maxWidth: '30ch',
     fontSize: fontSizes[14],
   },
 ]);
+
+export const descriptionStyle = styleVariants({
+  White: [
+    descriptionBaseStyle,
+    {
+      color: colors.slate500,
+    },
+  ],
+  Dark: [
+    descriptionBaseStyle,
+    {
+      color: colors.slate300,
+    },
+  ],
+});
