@@ -27,6 +27,19 @@ export default defineType({
       type: 'text',
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'positioning',
+      title: 'Block positioning',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Left', value: 'left' },
+          { title: 'Center', value: 'center' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'center',
+    }),
   ],
   preview: {
     select: {
