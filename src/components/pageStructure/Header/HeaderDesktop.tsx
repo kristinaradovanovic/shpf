@@ -6,6 +6,7 @@ import { HeaderSchemaType } from '@/schemas/header/header.types';
 import * as styles from './HeaderDesktop.css';
 
 interface HeaderDesktopProps {
+  mainHeaderTitle?: HeaderSchemaType['mainHeaderTitle'];
   headerItems?: HeaderSchemaType['headerItems'];
   ctaButton?: HeaderSchemaType['ctaButton'];
   isCompact: boolean;
@@ -14,6 +15,7 @@ interface HeaderDesktopProps {
 }
 
 const HeaderDesktop = ({
+  mainHeaderTitle,
   headerItems,
   ctaButton,
   isCompact,
@@ -45,7 +47,7 @@ const HeaderDesktop = ({
         </Link>
 
         <div className={`${styles.siteTitle} ${isCompact ? styles.siteTitleCompact : ''}`}>
-          Les Clefs d&apos;Or Sweden
+          {mainHeaderTitle || `Les Clefs d'Or Sweden`}
         </div>
 
         <div className={styles.rightControls}>
