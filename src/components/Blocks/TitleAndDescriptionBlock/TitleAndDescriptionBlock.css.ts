@@ -4,6 +4,7 @@ import { h2, sectionDescription } from '@/lib/styles/fonts/typography.css';
 import { colors } from '@/lib/styles/variables/colors';
 import { spacings } from '@/lib/styles/variables/spacings';
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const sectionStyle = style([
   {
@@ -24,41 +25,96 @@ export const sectionGridStyle = style([
   },
 ]);
 
-export const gridItemStyle = style([
-  {
+export const gridItemStyle = recipe({
+  base: {
     gridColumn: 'span 12',
     display: 'flex',
-    justifyContent: 'center',
   },
-]);
+  variants: {
+    alignment: {
+      left: {
+        justifyContent: 'flex-start',
+      },
+      center: {
+        justifyContent: 'center',
+      },
+    },
+  },
+  defaultVariants: {
+    alignment: 'center',
+  },
+});
 
-export const contentWrapperStyle = style([
-  {
+export const contentWrapperStyle = recipe({
+  base: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
     gap: spacings[16],
     width: '100%',
     maxWidth: '860px',
   },
-]);
-
-export const titleStyle = style([
-  h2,
-  {
-    color: colors.navy700,
-    margin: 0,
-    textAlign: 'center',
-    paddingBlockEnd: spacings[24],
+  variants: {
+    alignment: {
+      left: {
+        alignItems: 'flex-start',
+        textAlign: 'left',
+      },
+      center: {
+        alignItems: 'center',
+        textAlign: 'center',
+      },
+    },
   },
-]);
-
-export const descriptionStyle = style([
-  sectionDescription,
-  {
-    color: colors.slate500,
-    maxWidth: '800px',
-    alignSelf: 'center',
+  defaultVariants: {
+    alignment: 'center',
   },
-]);
+});
+
+export const titleStyle = recipe({
+  base: [
+    h2,
+    {
+      color: colors.navy700,
+      margin: 0,
+      paddingBlockEnd: spacings[24],
+    },
+  ],
+  variants: {
+    alignment: {
+      left: {
+        textAlign: 'left',
+      },
+      center: {
+        textAlign: 'center',
+      },
+    },
+  },
+  defaultVariants: {
+    alignment: 'center',
+  },
+});
+
+export const descriptionStyle = recipe({
+  base: [
+    sectionDescription,
+    {
+      color: colors.slate500,
+      maxWidth: '800px',
+    },
+  ],
+  variants: {
+    alignment: {
+      left: {
+        alignSelf: 'flex-start',
+        textAlign: 'left',
+      },
+      center: {
+        alignSelf: 'center',
+        textAlign: 'center',
+      },
+    },
+  },
+  defaultVariants: {
+    alignment: 'center',
+  },
+});

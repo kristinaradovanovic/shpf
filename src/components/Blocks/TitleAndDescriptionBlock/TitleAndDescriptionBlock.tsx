@@ -18,25 +18,28 @@ const TitleAndDescriptionBlock = ({
   sectionTagline,
   title,
   description,
+  positioning = 'center',
 }: TitleAndDescriptionBlockSchemaType) => {
+  const textAlignment = positioning === 'center' ? 'center' : 'left';
+
   return (
     <Section className={sectionStyle}>
       <Grid className={sectionGridStyle}>
-        <GridItem className={gridItemStyle}>
-          <div className={contentWrapperStyle}>
+        <GridItem className={gridItemStyle({ alignment: positioning })}>
+          <div className={contentWrapperStyle({ alignment: positioning })}>
             {sectionTagline && (
               <SectionTagline
                 text={sectionTagline}
-                alignment="center"
+                alignment={textAlignment}
               />
             )}
             <CustomHeading
               as="h3"
               text={title}
               textColor="navy700"
-              className={titleStyle}
+              className={titleStyle({ alignment: positioning })}
             />
-            <p className={descriptionStyle}>{description}</p>
+            <p className={descriptionStyle({ alignment: positioning })}>{description}</p>
           </div>
         </GridItem>
       </Grid>

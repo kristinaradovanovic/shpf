@@ -35,6 +35,13 @@ export default defineType({
         }),
     }),
     defineField({
+      name: 'mainHeaderTitle',
+      title: 'Main header title',
+      type: 'string',
+      description: 'Primary title shown in the desktop header.',
+      group: ['main'],
+    }),
+    defineField({
       name: 'headerItems',
       title: 'Header items',
       type: 'array',

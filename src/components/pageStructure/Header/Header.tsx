@@ -6,7 +6,7 @@ import * as styles from './Header.css';
 import HeaderDesktop from './HeaderDesktop';
 import HeaderMobile from './HeaderMobile';
 
-const Header = ({ headerItems, ctaButton }: HeaderSchemaType) => {
+const Header = ({ mainHeaderTitle, headerItems, ctaButton }: HeaderSchemaType) => {
   const { locale, asPath } = useRouter();
   const [isCompact, setIsCompact] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -84,6 +84,7 @@ const Header = ({ headerItems, ctaButton }: HeaderSchemaType) => {
     <header className={`${styles.header} ${shouldCompact ? styles.headerCompact : ''}`}>
       <div className={styles.headerInner}>
         <HeaderDesktop
+          mainHeaderTitle={mainHeaderTitle}
           headerItems={headerItems}
           ctaButton={ctaButton}
           isCompact={shouldCompact}

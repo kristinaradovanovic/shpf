@@ -3,6 +3,7 @@ import { HeaderCTAButtonItemSchemaType } from '@schemas/headerCtaButtonItem/head
 import { HeaderItemSchemaType } from '@schemas/headerItem/headerItem.types';
 
 export interface HeaderSchemaType extends SchemaType, LocalizedSchemaType {
+  mainHeaderTitle?: string;
   headerItems?: (HeaderItemSchemaType & ArrayMemberType)[];
   ctaButton?: HeaderCTAButtonItemSchemaType;
 }
