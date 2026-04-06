@@ -12,7 +12,6 @@ import {
   footerRoot,
   legalLink,
   legalLinks,
-  legalRow,
   logoWrap,
   mutedText,
   navColumn,
@@ -149,7 +148,7 @@ export default function Footer({ footer, showFooter }: FooterProps) {
         </section>
       </div>
 
-      <div className={legalRow}>
+      {/*  <div className={legalRow}>
         <p className={mutedText}>{copyrightText}</p>
         <nav className={legalLinks}>
           {policyLinks.map((policy) => {
@@ -165,7 +164,7 @@ export default function Footer({ footer, showFooter }: FooterProps) {
             );
           })}
         </nav>
-      </div>
+      </div> */}
     </footer>
   );
 }
